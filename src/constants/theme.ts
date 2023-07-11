@@ -1,21 +1,23 @@
-export const theme = {
+import { DefaultTheme } from 'styled-components';
+
+export const theme: DefaultTheme = {
   breakpoints: ['375px', '768px', '1440px'],
   colors: {
     mainDark: '#23262A',
     secondaryDark: '#3E4462',
     mainBlack: '#000000',
     mainWhite: '#FFFFFF',
-    hoverBgBtn: '#FAFAFA',
     mainGrey: '#7E7E7E',
+    hoverBgBtn: '#FAFAFA',
     secondaryGrey: '#656565',
     disabledGrey: '#BDBDBD',
     mainAccent: '#8BAA36',
     secondaryAccent: '#EBF3D4',
     mainNavLinkHover: '#23262A',
     mainHeaderText: '#22252A',
+    mainBtnCategoryText: '#FAFAFA',
     mainBtnText: '#22252A',
     mainBTn: '#22252A',
-    mainBtnCategoryText: '#FAFAFA',
     mainBtnBGCategory: '#8AA936',
     mainBtnBGHover: '#1E1F28',
     mainBtnInput: '#ffffff',
@@ -32,6 +34,7 @@ export const theme = {
     deleteBtnBg: '#8BAA36',
     deleteBtnRecipe: '#8BAA36',
     recipeBlockBtnBg: '#22252A',
+    recipeBlockBg: ' #FFFFFF',
     paginationBg: '#EBF3D4',
     paginationText: '#22252A',
     aboutRecipe: '#23262A',
@@ -41,7 +44,6 @@ export const theme = {
     searchSelectText: 'rgba(0, 0, 0, 0.5)',
     tooltipbg: '#EBF3D4',
     ingredientsBgrCol: '#EBF3D4',
-    recipeBlockBg: ' #FFFFFF',
     searchFormHoverBtn: '#23262A',
     mainGreyBg: '#D9D9D9',
     secondaryGreyBg: '#C4C4C4',
@@ -125,7 +127,7 @@ export const theme = {
   },
 };
 
-export const darkTheme = {
+export const darkTheme: DefaultTheme = {
   breakpoints: ['375px', '768px', '1440px'],
   colors: {
     mainDark: '#FAFAFA',
@@ -144,18 +146,20 @@ export const darkTheme = {
     mainBtnCategoryTextHover: '#22252A',
     mainBtnText: '#FAFAFA',
     mainBTn: '#8AA936',
+    mainBtnBGCategory: '#8AA936',
     mainBtnCategory: '#8AA936',
     mainBtnCategoryHover: '#D9D9D96',
-
-    mainBtnBGCategory: '#8AA936',
     mainBtnInput: '#1e1f28',
     bodyBg: '#1E1F28',
     footerBg: '#8BAA36',
     footerSMlinks: '#FAFAFA',
-    footerBtnBg: '#23262A',
-    footerCopyRight: 'rgba(255, 255, 255, 0.5)',
     footerSMlinksHover: '#23262A',
     footerSMlinksHoverAddRecipePge: '#8BAA36',
+    footerBtnBg: '#23262A',
+    footerCopyRight: 'rgba(255, 255, 255, 0.5)',
+    mainBg: '#ECECEC',
+    btnTextLight: '#FAFAFA',
+    sectionHeader: '#FAFAFA',
     deleteBtnBg: '#22252A',
     deleteBtnRecipe: '#1E1F28',
     recipeBlockBtnBg: '#8BAA36',
@@ -171,11 +175,7 @@ export const darkTheme = {
     searchDropDownBg: '#8BAA36',
     tooltipbg: '#8BAA36',
     ingredientsBgrCol: '#2A2C36',
-
     mainSerchHoverText: '#8BAA36',
-    mainBg: '#ECECEC',
-    btnTextLight: '#FAFAFA',
-    sectionHeader: '#FAFAFA',
     mainGreyBg: '#D9D9D9',
     secondaryGreyBg: '#C4C4C4',
     btnHoverBg: '#22252A',
