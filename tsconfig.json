@@ -17,5 +17,5 @@
     "noEmit": true,
     "jsx": "react-jsx"
   },
-  "include": ["src", "public/locales", "src/global.d.ts"]
+  "include": ["src", "public/locales", "src/global.d.ts", "types/theme.d.ts"]
 }

@@ -1,7 +1,12 @@
 import { createGlobalStyle } from 'styled-components';
+import { theme } from 'constants/theme';
 import 'modern-normalize/modern-normalize.css';
 
-export const GlobalStyle = createGlobalStyle`
+interface GlobalStyleProps {
+  theme: typeof theme;
+}
+
+export const GlobalStyle = createGlobalStyle<GlobalStyleProps>`
   * {
     box-sizing: border-box;
   }
@@ -9,16 +14,17 @@ export const GlobalStyle = createGlobalStyle`
     margin: 0;
     padding-top: 0;
     padding-bottom: 0;
-    font-family: ${p => p.theme.fonts.main};
+   
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 
+    font-family: ${p => p.theme.fonts.main};   
     font-size: "16px";
     font-weight: ${p => p.theme.fontWeights[0]};
     line-height: ${p => p.theme.lineHeights.content};
     letter-spacing: ${p => p.theme.letterSpacings.content};
 
-    color: ${p => p.theme.colors.primaryText};
+    color: ${p => p.theme.colors.mainWhite};
     background-color: ${p => p.theme.colors.bodyBg};
 
     &.open-modal{

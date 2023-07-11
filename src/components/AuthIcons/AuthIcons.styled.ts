@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 
-import { ReactComponent as UserIcon } from '../../images/icons/user.svg';
-import { ReactComponent as EmailIcon } from '../../images/icons/mail.svg';
-import { ReactComponent as LockIcon } from '../../images/icons/password.svg';
-import { ReactComponent as ErrorIcon } from '../../images/icons/error-icon.svg';
-import { ReactComponent as CheckIcon } from '../../images/icons/check-icon.svg';
-import { ReactComponent as WarnIcon } from '../../images/icons/warn-icon.svg';
+import { ReactComponent as UserIcon } from 'images/icons/user.svg';
+import { ReactComponent as EmailIcon } from 'images/icons/mail.svg';
+import { ReactComponent as LockIcon } from 'images/icons/password.svg';
+import { ReactComponent as ErrorIcon } from 'images/icons/error-icon.svg';
+import { ReactComponent as CheckIcon } from 'images/icons/check-icon.svg';
+import { ReactComponent as WarnIcon } from 'images/icons/warn-icon.svg';
 
 export const UserIconStyled = styled(UserIcon)`
   position: absolute;
