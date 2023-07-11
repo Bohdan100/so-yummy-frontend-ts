@@ -19,7 +19,7 @@ import {
   PassWarnIconStyled,
   PassErrorIconStyled,
   PassValidIconStyled,
-} from '../../components/AuthIcons';
+} from '../AuthIcons';
 
 import {
   Container,
@@ -86,7 +86,7 @@ const RegisterForm = () => {
           <StyledForm>
             <TitleContainer>
               <Title>{t('auth.title.register')}</Title>
-              <PulseLoader color="#8BAA36" size={12} loading={isLoading}/>
+              <PulseLoader color="#8BAA36" size={12} loading={isLoading} />
               {error && <ErrorBox>{ErrorStatus[error]}</ErrorBox>}
             </TitleContainer>
             <InputContainer>

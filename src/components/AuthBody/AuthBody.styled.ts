@@ -1,13 +1,14 @@
 import styled from 'styled-components';
-import bgMob from '../../images/bgPages/authPage/auth_back_mob.png';
-import bgDesk from '../../images/bgPages/authPage/auth_back_desktop.png';
-import bgTab from '../../images/bgPages/authPage/auth_back_tablet.png';
-import imgMob from '../../images/bgPages/authPage/auth_mob@1x.png';
-import imgMob2 from '../../images/bgPages/authPage/auth_mob@2x.png';
-import imgTab from '../../images/bgPages/authPage/auth_tablet@1x.png';
-import imgTab2 from '../../images/bgPages/authPage/auth_tablet@2x.png';
-import imgDesk from '../../images/bgPages/authPage/auth_desktop@1x.png';
-import imgDesk2 from '../../images/bgPages/authPage/auth_desktop@2x.png';
+
+import bgMob from 'images/bgPages/authPage/auth_back_mob.png';
+import bgDesk from 'images/bgPages/authPage/auth_back_desktop.png';
+import bgTab from 'images/bgPages/authPage/auth_back_tablet.png';
+import imgMob from 'images/bgPages/authPage/auth_mob@1x.png';
+import imgMob2 from 'images/bgPages/authPage/auth_mob@2x.png';
+import imgTab from 'images/bgPages/authPage/auth_tablet@1x.png';
+import imgTab2 from 'images/bgPages/authPage/auth_tablet@2x.png';
+import imgDesk from 'images/bgPages/authPage/auth_desktop@1x.png';
+import imgDesk2 from 'images/bgPages/authPage/auth_desktop@2x.png';
 
 export const Wrapper = styled.div`
   position: relative;

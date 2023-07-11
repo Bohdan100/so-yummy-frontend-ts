@@ -1,11 +1,11 @@
-import { Suspense } from 'react';
+import { FC, Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 import LangSwitcher from 'components/LangSwitcher';
 import Loader from 'components/Loader';
 
-const Layout = () => {
+const Layout: FC = () => {
   return (
-    <Suspense fallback={<Loader/>}>
+    <Suspense fallback={<Loader />}>
       <LangSwitcher position="absolute" />
       <Outlet />
     </Suspense>
