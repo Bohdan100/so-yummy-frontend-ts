@@ -1,11 +1,12 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
-import imgDesk from '../../images/bgPages/welcomePage/welcomePage@1x-desk.png';
-import imgDeskX2 from '../../images/bgPages/welcomePage/welcomePage@2x-desk.png';
-import imgTab from '../../images/bgPages/welcomePage/welcomePage@1x-tab.png';
-import imgTabX2 from '../../images/bgPages/welcomePage/welcomePage@2x-tab.png';
-import imgMob from '../../images/bgPages/welcomePage/welcomePage@1x-mob.png';
-import imgMobX2 from '../../images/bgPages/welcomePage/welcomePage@2x-mob.png';
+
+import imgDesk from 'images/bgPages/welcomePage/welcomePage@1x-desk.png';
+import imgDeskX2 from 'images/bgPages/welcomePage/welcomePage@2x-desk.png';
+import imgTab from 'images/bgPages/welcomePage/welcomePage@1x-tab.png';
+import imgTabX2 from 'images/bgPages/welcomePage/welcomePage@2x-tab.png';
+import imgMob from 'images/bgPages/welcomePage/welcomePage@1x-mob.png';
+import imgMobX2 from 'images/bgPages/welcomePage/welcomePage@2x-mob.png';
 
 export const Container = styled.div`
   position: absolute;

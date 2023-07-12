@@ -1,7 +1,8 @@
+import { FC } from 'react';
 import SigninForm from '../../components/SigninForm';
 import AuthBody from '../../components/AuthBody';
 
-const SigninPage = () => {
+const SigninPage: FC = () => {
   return (
     <AuthBody>
       <SigninForm />

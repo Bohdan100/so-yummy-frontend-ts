@@ -6,9 +6,9 @@ import PulseLoader from 'react-spinners/PulseLoader';
 import { useTranslation } from 'react-i18next';
 import { selectIsLoading } from 'redux/Auth/authSelectors';
 import { register } from 'redux/Auth/authOperations';
-import { useValidation, useErrorStatus } from '../../helpers';
-import { useAuth } from '../../hooks';
-import { setError } from '../../redux/Auth/authSlice';
+import { useValidation, useErrorStatus } from 'helpers';
+import { useAuth } from 'hooks';
+import { setError } from 'redux/Auth/authSlice';
 
 import {
   UserIconStyled,

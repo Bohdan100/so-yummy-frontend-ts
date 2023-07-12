@@ -1,3 +1,4 @@
+import { FC } from 'react';
 import {
   LinkRegister,
   LinkLogin,
@@ -12,13 +13,13 @@ import {
 
 import { useTranslation } from 'react-i18next';
 
-import { MainContainerTwo } from '../../components/Header/Header.styled';
-import Logo from '../../images/icons/logo-desktop.svg';
+import { MainContainerTwo } from 'components/Header/Header.styled';
+import Logo from 'images/icons/logo-desktop.svg';
 
-const WelcomePage = () => {
+const WelcomePage: FC = () => {
   const { t } = useTranslation();
 
-   return (
+  return (
     <MainContainerTwo>
       <Container>
         <Box>
