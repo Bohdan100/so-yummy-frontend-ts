@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { useMedia } from 'react-use';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
@@ -6,7 +6,7 @@ import * as API from 'services/categories-API';
 import Loader from 'components/Loader/Loader';
 import NotFoundWrapp from 'components/ReusableComponents/NotFoundWrapp';
 import RecipeCard from 'components/ReusableComponents/RecipeCard/RecipeCard';
-
+import { OneRecipe } from '../../../types/recipesTypes';
 import {
   CategoryList,
   SeeAllBtn,
@@ -14,17 +14,19 @@ import {
   Title,
   OtherBtn,
 } from './PreviewCategories.styled';
+import { RecipesByFourCategories } from '../../../types/recipesTypes';
 
-const PreviewCategories = () => {
+const PreviewCategories: FC = () => {
   const isTabletDevice = useMedia('(min-width: 768px)');
   const isDesctopDevice = useMedia('(min-width: 1440px)');
-  const [recipesByMainCategories, setRecipesByMainCategories] = useState([]);
-  const [error, setError] = useState(null);
+  const [recipesByMainCategories, setRecipesByMainCategories] =
+    useState<RecipesByFourCategories>();
+  const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const { t } = useTranslation();
 
   useEffect(() => {
-    let count;
+    let count: number;
     if (isDesctopDevice) {
       count = 4;
     } else if (isTabletDevice) {
@@ -40,8 +42,10 @@ const PreviewCategories = () => {
         } = await API.fetchRecipesByFourCategory(count);
         setRecipesByMainCategories(recipes);
       } catch (error) {
-        setError({ error });
-        toast.error(t('PreviewCategories.error'));
+        if (error instanceof Error) {
+          setError(error.message);
+          toast.error(t('PreviewCategories.error'));
+        }
       } finally {
         setIsLoading(false);
       }
@@ -53,7 +57,7 @@ const PreviewCategories = () => {
     <>
       {error && (
         <NotFoundWrapp>
-          {t('PreviewCategories.errorText')} {error.message}
+          {t('PreviewCategories.errorText')} {error}
         </NotFoundWrapp>
       )}
       {isLoading && <Loader />}
@@ -62,13 +66,13 @@ const PreviewCategories = () => {
           Object.entries(recipesByMainCategories).map(
             ([category, recipes], idx) => {
               return (
-                <li key={`${category}-${idx}`} category={category}>
-                  <Title sx={{ marginTop: '0', marginBottom: '50' }}>
+                <li key={`${category}-${idx}`}>
+                  <Title>
                     {category.charAt(0).toUpperCase() + category.slice(1)}
                   </Title>
                   <CardList>
-                    {recipes.map(recipe => (
-                      <RecipeCard key={recipe._id} dish={recipe} />
+                    {recipes.map((recipe: OneRecipe) => (
+                      <RecipeCard dish={recipe} key={recipe._id} />
                     ))}
                   </CardList>
                   <SeeAllBtn to={`/categories/${category}`}>

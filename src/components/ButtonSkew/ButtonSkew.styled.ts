@@ -1,6 +1,13 @@
 import styled from 'styled-components';
 
-export const SkewBtn = styled.button`
+export interface IBtnProps {
+  type: 'submit' | 'reset' | 'button';
+  fn?: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  location?: string;
+  styled?: string;
+}
+
+export const SkewBtn = styled.button<IBtnProps>`
   display: flex;
   align-items: center;
   justify-content: center;

@@ -1,3 +1,4 @@
+import { FC } from 'react';
 import Mob1 from '../../../images/bgPages/searchPage/search_page_mob@1x.png';
 import Mob2 from '../../../images/bgPages/searchPage/search_page_mob@2x.png';
 import Tablet1 from '../../../images/bgPages/searchPage/search_page_tablet@1x.png';
@@ -6,8 +7,10 @@ import Desktop1 from '../../../images/bgPages/searchPage/search_page_desktop@1x.
 import Desktop2 from '../../../images/bgPages/searchPage/search_page_desktop@2x.png';
 
 import { Wrapper, ImgWrapper, Text } from './NotFoundWrapp.styled';
-
-const NotFoundWrapp = ({ children }) => {
+interface INotFoundWrappProps {
+  children: React.ReactNode;
+}
+const NotFoundWrapp: FC<INotFoundWrappProps> = ({ children }) => {
   return (
     <Wrapper>
       <ImgWrapper>

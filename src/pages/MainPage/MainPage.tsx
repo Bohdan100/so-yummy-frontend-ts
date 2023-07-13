@@ -1,8 +1,9 @@
+import { FC } from 'react';
 import MainHero from 'components/Main/MainHero/MainHero';
 import MainContainer from 'components/MainContainer/MainContainer';
 import PreviewCategories from 'components/PreviewCategories/PreviewCategories';
 
-const MainPage = () => {
+const MainPage: FC = () => {
   return (
     <MainContainer>
       <MainHero />

@@ -1,3 +1,4 @@
+import { FC } from 'react';
 import SearchForm from 'components/ReusableComponents/SearchForm';
 import СhooseYourBreakfast from 'components/Main/СhooseYourBreakfast';
 import { toast } from 'react-toastify';
@@ -10,15 +11,14 @@ import {
   SpanGr,
 } from './MainHero.styled';
 import { useDesktopCheck } from 'hooks/desktopCheck';
-import HeroBg from '../HeroBG/HeroBg.jsx';
+import HeroBg from '../HeroBG/HeroBg';
 import { MainContainerTwo } from 'components/Header/Header.styled';
 
-const MainHero = () => {
+const MainHero: FC = () => {
   const { isTablet, isDesktop } = useDesktopCheck();
   const navigate = useNavigate();
   const { t } = useTranslation();
 
-  
   const perPageItems = () => {
     let perPage;
     if (isDesktop) {
@@ -31,7 +31,7 @@ const MainHero = () => {
     return perPage;
   };
 
-  const handleOnSubmit = (query, type) => {
+  const handleSubmit = (query: string, type: string) => {
     if (query === '') {
       toast.error(t('mainHero.error'), {
         position: toast.POSITION.TOP_CENTER,
@@ -50,11 +50,9 @@ const MainHero = () => {
           <MainPageH1>
             <SpanGr>So</SpanGr>Yummy
           </MainPageH1>
-          <MainPageText>
-            {t('mainHero.description')}
-          </MainPageText>
+          <MainPageText>{t('mainHero.description')}</MainPageText>
           <СhooseYourBreakfast />
-          <SearchForm styled={'black'} handleOnSubmit={handleOnSubmit} />
+          <SearchForm onSubmit={handleSubmit} />
         </MainPageDiv>
         <HeroBg />
       </MainContainerTwo>

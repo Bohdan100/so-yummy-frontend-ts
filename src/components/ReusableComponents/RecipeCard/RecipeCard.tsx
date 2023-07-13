@@ -1,3 +1,4 @@
+import { FC } from 'react';
 import {
   RecipeCardImg,
   RecipeCardWrapper,
@@ -5,13 +6,18 @@ import {
   TitleWrapper,
   RecipeLink,
 } from './RecipeCard.styled';
+import { OneRecipe } from '../../../../types/recipesTypes';
 
-const RecipeCard = ({ dish }) => {
-  const { _id: id, title, preview } = dish;
+interface IRecipeCardProps {
+  dish: OneRecipe;
+}
+
+const RecipeCard: FC<IRecipeCardProps> = ({ dish }) => {
+  const { _id, title, preview } = dish;
 
   return (
     <RecipeCardWrapper>
-      <RecipeLink to={`/recipes/${id}`}>
+      <RecipeLink to={`/recipes/${_id}`}>
         <RecipeCardImg src={preview} alt={title} />
         <TitleWrapper>
           <RecipeTitle>{title}</RecipeTitle>
