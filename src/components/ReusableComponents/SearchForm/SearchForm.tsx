@@ -3,13 +3,15 @@ import { useTranslation } from 'react-i18next';
 
 import { SearchBlock, SearchIn, SearchInput } from './SearchForm.styled';
 import ButnSkew from 'components/ButtonSkew';
+
 interface ISearchFormProps {
-  handleOnSubmit: (query: string, type: string) => void;
-  type: string;
-  startQuery: string;
+  onSubmit: (query: string, type: string) => void;
+  type?: string;
+  startQuery?: string;
 }
+
 const SearchForm: FC<ISearchFormProps> = ({
-  handleOnSubmit,
+  onSubmit,
   type = 'Title',
   startQuery,
 }) => {
@@ -22,7 +24,7 @@ const SearchForm: FC<ISearchFormProps> = ({
 
   function handleSubmit(event: FormEvent) {
     event.preventDefault();
-    handleOnSubmit(searchValue, type);
+    onSubmit(searchValue, type);
   }
 
   return (
