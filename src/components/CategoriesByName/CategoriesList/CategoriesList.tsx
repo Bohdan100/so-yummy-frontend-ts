@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { FC, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router';
 import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
@@ -8,13 +8,13 @@ import Tab from '@mui/material/Tab';
 import { toast } from 'react-toastify';
 import * as API from 'services/categories-API';
 import NotFoundWrapp from 'components/ReusableComponents/NotFoundWrapp';
-import Loader from 'components/Loader/Loader';
+import Loader from 'components/Loader';
 
-const CategoriesList = () => {
-  const { categoryName: category } = useParams();
+const CategoriesList: FC = () => {
+  const { categoryName: category } = useParams<string>();
   const [tabValue, setTabValue] = useState(0);
-  const [categories, setCategories] = useState([]);
-  const [error, setError] = useState(null);
+  const [categories, setCategories] = useState<string[]>([]);
+  const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const { t } = useTranslation();
@@ -24,6 +24,7 @@ const CategoriesList = () => {
       try {
         setIsLoading(true);
         const { categoriesList } = await API.fetchAllCategories();
+
         setCategories(categoriesList);
         if (category) {
           const categoryCapitalize =
@@ -32,8 +33,10 @@ const CategoriesList = () => {
           if (indexOfCategory > 0) setTabValue(indexOfCategory);
         }
       } catch (error) {
-        setError({ error });
-        toast.error(t('categoriesList.error'));
+        if (error instanceof Error) {
+          setError(error.message);
+          toast.error(t('categoriesList.error'));
+        }
       } finally {
         setIsLoading(false);
       }
@@ -43,13 +46,14 @@ const CategoriesList = () => {
 
   useEffect(() => {
     if (categories.length > 0) {
-      const lowerCaseCategory = categories[tabValue].toLowerCase();
-      navigate(`/categories/${lowerCaseCategory}`);
+      const navigateCategory: string = categories[tabValue];
+      const lowercaseNavCategory: string = navigateCategory.toLowerCase();
+      navigate(`/categories/${lowercaseNavCategory}`);
     }
   }, [categories, navigate, tabValue]);
 
-  const handleChange = (e, newCategory) => {
-    navigate(`/categories/${e.target.textContent}`);
+  const handleChange = (e: React.ChangeEvent<{}>, newCategory: number) => {
+    navigate(`/categories/${categories[newCategory]}`);
     setTabValue(newCategory);
   };
 
@@ -116,7 +120,7 @@ const CategoriesList = () => {
               },
             }}
           >
-            {categories.map((category, idx) => {
+            {categories.map((category: string, idx) => {
               return (
                 <Tab
                   label={category.toLowerCase()}

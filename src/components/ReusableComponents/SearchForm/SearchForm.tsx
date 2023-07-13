@@ -1,18 +1,26 @@
-import React, { useState } from 'react';
+import { ChangeEvent, FC, FormEvent, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { SearchBlock, SearchIn, SearchInput } from './SearchForm.styled';
 import ButnSkew from 'components/ButtonSkew';
-
-const SearchForm = ({ handleOnSubmit, type = 'Title', startQuery }) => {
-  const [searchValue, setInputValue] = useState(startQuery ?? '');
+interface ISearchFormProps {
+  handleOnSubmit: (query: string, type: string) => void;
+  type: string;
+  startQuery: string;
+}
+const SearchForm: FC<ISearchFormProps> = ({
+  handleOnSubmit,
+  type = 'Title',
+  startQuery,
+}) => {
+  const [searchValue, setInputValue] = useState<string>(startQuery ?? '');
   const { t } = useTranslation();
 
-  function handleInputChange(event) {
+  function handleChange(event: ChangeEvent<HTMLInputElement>) {
     setInputValue(event.target.value);
   }
 
-  function handleSubmit(event) {
+  function handleSubmit(event: FormEvent) {
     event.preventDefault();
     handleOnSubmit(searchValue, type);
   }
@@ -24,7 +32,7 @@ const SearchForm = ({ handleOnSubmit, type = 'Title', startQuery }) => {
           type="text"
           value={searchValue}
           placeholder={t('searchForm.btnPlaceholder')}
-          onChange={handleInputChange}
+          onChange={handleChange}
         />
         <ButnSkew type="submit" text={t('searchForm.btnText')} />
       </SearchIn>

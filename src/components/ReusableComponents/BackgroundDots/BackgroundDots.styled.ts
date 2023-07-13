@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 
-export const StyledDiv = styled.div`
+interface IProps {
+  backgroundImage: string;
+}
+
+export const StyledDiv = styled.div<IProps>`
   z-index: -1;
   position: absolute;
   top: 71px;
