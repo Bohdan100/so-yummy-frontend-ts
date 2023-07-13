@@ -1,8 +1,8 @@
-import React from 'react';
+import { FC } from 'react';
 import LeafsLeft from './LeafsLeft';
 import LeafsRight from './LeafsRight';
 
-const HeroBg = () => {
+const HeroBg: FC = () => {
   return (
     <>
       <LeafsRight />
