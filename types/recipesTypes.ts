@@ -25,3 +25,19 @@ export type OneRecipe = {
     }
   ];
 };
+
+export interface RecipesByFourCategories {
+  breakfast: Pick<
+    OneRecipe,
+    '_id' | 'title' | 'category' | 'preview' | 'thumb'
+  >[];
+  vegan: Pick<OneRecipe, '_id' | 'title' | 'category' | 'preview' | 'thumb'>[];
+  miscellaneous: Pick<
+    OneRecipe,
+    '_id' | 'title' | 'category' | 'preview' | 'thumb'
+  >[];
+  dessert: Pick<
+    OneRecipe,
+    '_id' | 'title' | 'category' | 'preview' | 'thumb'
+  >[];
+}
