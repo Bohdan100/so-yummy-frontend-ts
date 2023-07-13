@@ -1,6 +1,7 @@
+import { FC, ReactNode } from 'react';
 import { Container } from './MainContainer.styled';
 
-const MainContainer = ({ children }) => {
+const MainContainer: FC<{ children: ReactNode }> = ({ children }) => {
   return <Container>{children}</Container>;
 };
 

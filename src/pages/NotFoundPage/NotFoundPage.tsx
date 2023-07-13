@@ -1,3 +1,4 @@
+import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import Container from 'components/MainContainer';
 import {
@@ -13,7 +14,7 @@ import notFoundTablet2x from 'images/bgPages/notFoundPage/not_found_tablet@2x.pn
 import notFoundDesktop1x from 'images/bgPages/notFoundPage/not_found_desktop@1x.png';
 import notFoundDesktop2x from 'images/bgPages/notFoundPage/not_found_desktop@2x.png';
 
-const NotFoundPage = () => {
+const NotFoundPage: FC = () => {
   const { t } = useTranslation();
 
   return (
