@@ -3,10 +3,10 @@ import { useMedia } from 'react-use';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 import * as API from 'services/categories-API';
-import Loader from 'components/Loader/Loader';
+import Loader from 'components/Loader';
 import NotFoundWrapp from 'components/ReusableComponents/NotFoundWrapp';
 import RecipeCard from 'components/ReusableComponents/RecipeCard/RecipeCard';
-import { OneRecipe } from '../../../types/recipesTypes';
+import { IOneRecipe, IRecipesByFourCategories } from 'types/recipesTypes';
 import {
   CategoryList,
   SeeAllBtn,
@@ -14,13 +14,12 @@ import {
   Title,
   OtherBtn,
 } from './PreviewCategories.styled';
-import { RecipesByFourCategories } from '../../../types/recipesTypes';
 
 const PreviewCategories: FC = () => {
   const isTabletDevice = useMedia('(min-width: 768px)');
   const isDesctopDevice = useMedia('(min-width: 1440px)');
   const [recipesByMainCategories, setRecipesByMainCategories] =
-    useState<RecipesByFourCategories>();
+    useState<IRecipesByFourCategories>();
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const { t } = useTranslation();
@@ -71,7 +70,7 @@ const PreviewCategories: FC = () => {
                     {category.charAt(0).toUpperCase() + category.slice(1)}
                   </Title>
                   <CardList>
-                    {recipes.map((recipe: OneRecipe) => (
+                    {recipes.map((recipe: IOneRecipe) => (
                       <RecipeCard dish={recipe} key={recipe._id} />
                     ))}
                   </CardList>

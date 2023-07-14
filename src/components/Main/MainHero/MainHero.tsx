@@ -1,25 +1,25 @@
 import { FC } from 'react';
-import SearchForm from 'components/ReusableComponents/SearchForm';
-import СhooseYourBreakfast from 'components/Main/СhooseYourBreakfast';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { useDesktopCheck } from 'hooks/desktopCheck';
+import SearchForm from 'components/ReusableComponents/SearchForm';
+import СhooseYourBreakfast from 'components/Main/СhooseYourBreakfast';
+import HeroBg from '../HeroBG';
+import { MainContainerTwo } from 'components/Header/Header.styled';
 import {
   MainPageH1,
   MainPageText,
   MainPageDiv,
   SpanGr,
 } from './MainHero.styled';
-import { useDesktopCheck } from 'hooks/desktopCheck';
-import HeroBg from '../HeroBG/HeroBg';
-import { MainContainerTwo } from 'components/Header/Header.styled';
 
 const MainHero: FC = () => {
   const { isTablet, isDesktop } = useDesktopCheck();
   const navigate = useNavigate();
   const { t } = useTranslation();
 
-  const perPageItems = () => {
+  const perPageItems = (): number => {
     let perPage;
     if (isDesktop) {
       perPage = 12;

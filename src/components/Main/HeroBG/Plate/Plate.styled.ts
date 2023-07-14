@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import plate from '../../../../images/bgPages/mainPage//plate.png';
+import plate from 'images/bgPages/mainPage//plate.png';
 
 export const BgContainerPlate = styled.div`
   position: absolute;

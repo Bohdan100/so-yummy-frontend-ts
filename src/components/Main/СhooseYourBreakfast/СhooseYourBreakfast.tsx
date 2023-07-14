@@ -1,6 +1,9 @@
 import { FC } from 'react';
 import { useMedia } from 'react-use';
+import { useTranslation } from 'react-i18next';
 import { scrollToTop } from 'helpers/scrollToTop';
+import Arrow from '../HeroBG/Arrow';
+import Plate from '../HeroBG/Plate';
 import {
   ChooseBlock,
   ChooseLink,
@@ -8,9 +11,6 @@ import {
   ChooseText,
   RightArrow,
 } from './СhooseYourBreakfast.styles';
-import Arrow from '../HeroBG/Arrow';
-import Plate from '../HeroBG/Plate/Plate';
-import { useTranslation } from 'react-i18next';
 
 const СhooseYourBreakfast: FC = () => {
   const isTabDevice = useMedia('(min-width: 768px)');

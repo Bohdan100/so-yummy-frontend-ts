@@ -120,7 +120,7 @@ const CategoriesList: FC = () => {
               },
             }}
           >
-            {categories.map((category: string, idx) => {
+            {categories.map((category: string, idx: number) => {
               return (
                 <Tab
                   label={category.toLowerCase()}

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import arrowTab from '../../../../images/bgPages/mainPage/arrow-tab.png';
-import arrowDesc from '../../../../images/bgPages/mainPage//arrow-desc.png';
+import arrowTab from 'images/bgPages/mainPage/arrow-tab.png';
+import arrowDesc from 'images/bgPages/mainPage//arrow-desc.png';
 export const BgContainerArrow = styled.div`
   position: absolute;
   z-index: 1;

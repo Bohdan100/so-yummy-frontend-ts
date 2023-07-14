@@ -1,6 +1,6 @@
-export type AllRecipes = OneRecipe[];
+export type IAllRecipes = IOneRecipe[];
 
-export type OneRecipe = {
+export type IOneRecipe = {
   _id: string;
   title: string;
   category: string;
@@ -26,18 +26,18 @@ export type OneRecipe = {
   ];
 };
 
-export interface RecipesByFourCategories {
+export interface IRecipesByFourCategories {
   breakfast: Pick<
-    OneRecipe,
+    IOneRecipe,
     '_id' | 'title' | 'category' | 'preview' | 'thumb'
   >[];
-  vegan: Pick<OneRecipe, '_id' | 'title' | 'category' | 'preview' | 'thumb'>[];
+  vegan: Pick<IOneRecipe, '_id' | 'title' | 'category' | 'preview' | 'thumb'>[];
   miscellaneous: Pick<
-    OneRecipe,
+    IOneRecipe,
     '_id' | 'title' | 'category' | 'preview' | 'thumb'
   >[];
   dessert: Pick<
-    OneRecipe,
+    IOneRecipe,
     '_id' | 'title' | 'category' | 'preview' | 'thumb'
   >[];
 }
