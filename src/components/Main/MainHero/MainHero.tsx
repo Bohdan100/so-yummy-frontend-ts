@@ -19,7 +19,7 @@ const MainHero: FC = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
 
-  const perPageItems = () => {
+  const perPageItems = (): number => {
     let perPage;
     if (isDesktop) {
       perPage = 12;
