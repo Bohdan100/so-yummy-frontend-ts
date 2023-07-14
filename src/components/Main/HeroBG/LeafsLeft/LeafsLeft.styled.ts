@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import leafsLeft from '../../../../images/bgPages/mainPage/leafs-left.png';
-import leafsLeftTab from '../../../../images/bgPages/mainPage/leafs-left-tab.png';
-import leafsLeftDesc from '../../../../images/bgPages/mainPage/leafs-left-desc.png';
+import leafsLeft from 'images/bgPages/mainPage/leafs-left.png';
+import leafsLeftTab from 'images/bgPages/mainPage/leafs-left-tab.png';
+import leafsLeftDesc from 'images/bgPages/mainPage/leafs-left-desc.png';
 
 export const BgContainer = styled.div`
   position: absolute;

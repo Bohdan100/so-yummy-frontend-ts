@@ -1,11 +1,6 @@
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import Container from 'components/MainContainer';
-import {
-  NotFoundContainer,
-  ImageCont,
-  TextNotFound,
-} from './NotFoundPage.styled';
 import BackgroundDots from 'components/ReusableComponents/BackgroundDots';
 import notFoundMob1x from 'images/bgPages/notFoundPage/not_found_mob@1x.png';
 import notFoundMob2x from 'images/bgPages/notFoundPage/not_found_mob@2x.png';
@@ -13,6 +8,11 @@ import notFoundTablet1x from 'images/bgPages/notFoundPage/not_found_tablet@1x.pn
 import notFoundTablet2x from 'images/bgPages/notFoundPage/not_found_tablet@2x.png';
 import notFoundDesktop1x from 'images/bgPages/notFoundPage/not_found_desktop@1x.png';
 import notFoundDesktop2x from 'images/bgPages/notFoundPage/not_found_desktop@2x.png';
+import {
+  NotFoundContainer,
+  ImageCont,
+  TextNotFound,
+} from './NotFoundPage.styled';
 
 const NotFoundPage: FC = () => {
   const { t } = useTranslation();

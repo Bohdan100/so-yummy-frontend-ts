@@ -2,15 +2,15 @@ import { FC, useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import { toast } from 'react-toastify';
 import * as API from 'services/categories-API';
-import Loader from 'components/Loader/Loader';
+import { IAllRecipes } from 'types/recipesTypes';
+import Loader from 'components/Loader';
 import RecipeCard from 'components/ReusableComponents/RecipeCard/RecipeCard';
 import NotFoundWrapp from 'components/ReusableComponents/NotFoundWrapp';
 import { RecipesList } from './CategoriesByName.styled';
-import { AllRecipes } from '../../../types/recipesTypes';
 
 const CategoriesByName: FC = () => {
   const { categoryName: category } = useParams<string>();
-  const [recipes, setRecipes] = useState<AllRecipes>([]);
+  const [recipes, setRecipes] = useState<IAllRecipes>([]);
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
