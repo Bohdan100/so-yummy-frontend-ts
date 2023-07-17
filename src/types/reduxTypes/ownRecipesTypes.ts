@@ -1,3 +1,10 @@
+export interface IOwnRecipesState {
+  isLoading: boolean;
+  ownRecipes: IRecipe[];
+  total: number;
+  error: null | string;
+}
+
 export interface IIngridient {
   id: string;
   measure: string;
@@ -5,22 +12,22 @@ export interface IIngridient {
 
 export interface IRecipe {
   _id: string;
-  category: string;
-  description: string;
-  favorites: any[];
-  ingredients: IIngridient[];
-  instructions: string;
-  likes: any[];
-  owner: string;
-  popularity: number;
-  preview: string;
-  tags: any[];
-  thumb: string;
-  time: string;
   title: string;
+  category: string;
+  instructions: string;
+  description: string;
+  thumb: string;
+  preview: string;
+  time: string;
+  popularity: number;
+  likes: any[];
+  favorites: any[];
+  youtube: string;
+  tags: any[];
+  ingredients: IIngridient[];
+  owner?: string;
   updatedAt: string;
   createdAt: string;
-  youtube: string;
 }
 
 export interface IOwnRecipesGetResponse {
@@ -31,6 +38,11 @@ export interface IOwnRecipesGetResponse {
   };
   limit: string;
   page: string;
+  total: number;
+}
+
+export interface IOwnRecipesActionPayload {
+  ownRecipes: IRecipe[];
   total: number;
 }
 

@@ -5,5 +5,5 @@ export interface AsyncThunkConfig {
   state: RootState;
   rejectValue: string;
   serializedErrorType: string;
-  dispath: AppDispatch;
+  dispatch: AppDispatch;
 }

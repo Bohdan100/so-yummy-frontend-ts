@@ -6,7 +6,7 @@ import {
   IOwnRecipeCreateResponse,
 } from 'types/reduxTypes';
 
-export const getRecipes = async (page: string, limit: string) => {
+export const getRecipes = async (page?: string, limit?: string) => {
   if (page && limit) {
     const { data }: AxiosResponse<IOwnRecipesGetResponse> = await axios(
       `/ownRecipe?page=${page}&limit=${limit}`

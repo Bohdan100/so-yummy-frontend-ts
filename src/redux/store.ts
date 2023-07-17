@@ -4,7 +4,7 @@ import { AnyAction, Store } from 'redux';
 
 import { authReducer } from './Auth/authSlice';
 import { shoppingListReducer } from './ShoppingList/shoppingListSlice';
-import { ownRecipesReduser } from './OwnRecipes/OwnRecipesSlice';
+import { ownRecipesReduser } from './OwnRecipes/ownRecipesSlice';
 import { themeReducer } from './Theme/themeSlice';
 
 import {
@@ -36,7 +36,7 @@ export const store: Store = configureStore({
   reducer: {
     auth: persistedAuthReducer,
     // shoppingList: shoppingListReducer,
-    // ownRecipes: ownRecipesReduser,
+    ownRecipes: ownRecipesReduser,
     theme: persistedThemeReducer,
   },
 

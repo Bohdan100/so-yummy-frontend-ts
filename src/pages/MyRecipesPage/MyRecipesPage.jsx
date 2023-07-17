@@ -14,8 +14,8 @@ import {
   getOwnRecipesList,
   getTotalOwnRecipes,
   selectIsLoading,
-} from '../../redux/OwnRecipes/OwnRecipesSelectors';
-import { getOwnRecipes } from 'redux/OwnRecipes/OwnRecipesOperations';
+} from '../../redux/OwnRecipes/ownRecipesSelectors';
+import { getOwnRecipes } from 'redux/OwnRecipes/ownRecipesOperations';
 import ReusableTitle from '../../components/ReusableComponents/ReusableTitle';
 
 const MyRecipesPage = () => {
