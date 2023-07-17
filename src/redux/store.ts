@@ -39,11 +39,13 @@ export const store: Store = configureStore({
     // ownRecipes: ownRecipesReduser,
     theme: persistedThemeReducer,
   },
+
   middleware: getDefaultMiddleware({
     serializableCheck: {
       ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
     },
   }),
+
   devTools: process.env.NODE_ENV !== 'production',
 });
 

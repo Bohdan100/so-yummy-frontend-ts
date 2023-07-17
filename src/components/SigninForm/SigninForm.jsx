@@ -7,9 +7,9 @@ import { useTranslation } from 'react-i18next';
 import { selectIsLoading } from 'redux/Auth/authSelectors';
 import { login } from 'redux/Auth/authOperations';
 import { fetchProducts } from 'redux/ShoppingList/shoppingListOperations';
-import { useValidation, useErrorStatus } from '../../helpers';
-import { useAuth } from '../../hooks';
-import { setError } from '../../redux/Auth/authSlice';
+import { useValidation, useErrorStatus } from 'helpers';
+import { useAuth } from 'hooks';
+import { setError } from 'redux/Auth/authSlice';
 
 import {
   EmailIconStyled,
@@ -19,7 +19,7 @@ import {
   PassWarnIconStyled,
   PassErrorIconStyled,
   PassValidIconStyled,
-} from '../../components/AuthIcons';
+} from 'components/AuthIcons';
 
 import {
   Container,
@@ -88,7 +88,7 @@ const SigninForm = () => {
           <StyledForm>
             <TitleContainer>
               <Title>{t('auth.title.login')}</Title>
-              <PulseLoader color="#8BAA36" size={12} loading={isLoading}/>
+              <PulseLoader color="#8BAA36" size={12} loading={isLoading} />
               {error && <ErrorBox>{ErrorStatus[error]}</ErrorBox>}
             </TitleContainer>
             <InputContainer>
