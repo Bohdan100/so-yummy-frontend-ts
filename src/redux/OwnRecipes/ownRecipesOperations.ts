@@ -4,7 +4,7 @@ import {
   AsyncThunkConfig,
   IOwnRecipesActionPayload,
   IOwnRecipeDeleteResponse,
-} from 'types/reduxTypes';
+} from 'types';
 
 export const getOwnRecipes = createAsyncThunk<
   IOwnRecipesActionPayload,

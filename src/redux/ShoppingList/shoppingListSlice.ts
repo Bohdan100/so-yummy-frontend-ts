@@ -12,7 +12,7 @@ import {
 } from './shoppingListOperations';
 import { logout } from '../Auth/authOperations';
 import { getActions, isError } from 'redux/helpersRedux';
-import { IShoppingListState, ShoppingListExtraActions } from 'types/reduxTypes';
+import { IShoppingListState, ShoppingListExtraActions } from 'types';
 
 const extraActions: ShoppingListExtraActions = [
   fetchProducts,

@@ -1,7 +1,7 @@
 import { List } from './MyRecipeList.styled';
 import MyRecipeItem from '../MyRecipeItem';
 
-import { IRecipe } from 'types/reduxTypes';
+import { IRecipe } from 'types';
 
 interface IMyRecipeListProps {
   data: IRecipe[];

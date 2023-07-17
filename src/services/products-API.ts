@@ -1,5 +1,5 @@
 import axios, { AxiosResponse } from 'axios';
-import { IProduct, IProductDeleteResponse } from 'types/reduxTypes';
+import { IProduct, IProductDeleteResponse } from 'types';
 
 export const getProducts = async () => {
   const { data }: AxiosResponse<IProduct[]> = await axios.get('/shopping-list');

@@ -15,7 +15,7 @@ import {
   IUser,
   AsyncThunkConfig,
   UpdateUserResponse,
-} from 'types/reduxTypes';
+} from 'types';
 
 export const register = createAsyncThunk<
   IAuthResponse,

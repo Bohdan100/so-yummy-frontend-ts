@@ -3,7 +3,7 @@ import {
   IOwnRecipesGetResponse,
   IFormDataAddRecipe,
   IOwnRecipeCreateResponse,
-} from 'types/reduxTypes';
+} from 'types';
 
 export const getRecipes = async (page?: number, limit?: number) => {
   if (page && limit) {

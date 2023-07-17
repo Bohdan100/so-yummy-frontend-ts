@@ -23,7 +23,7 @@ import {
   REGISTER,
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-import { IAuthState } from 'types/reduxTypes';
+import { IAuthState } from 'types';
 
 const authPersistConfig = {
   key: 'auth',

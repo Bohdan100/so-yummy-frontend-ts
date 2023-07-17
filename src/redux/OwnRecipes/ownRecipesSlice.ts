@@ -1,7 +1,7 @@
 import { createSlice, AnyAction, Reducer } from '@reduxjs/toolkit';
 import { getOwnRecipes, deleteOwnRecipe } from './ownRecipesOperations';
 
-import { IOwnRecipesState } from 'types/reduxTypes';
+import { IOwnRecipesState } from 'types';
 
 const initialState: IOwnRecipesState = {
   isLoading: false,

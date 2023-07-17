@@ -5,11 +5,7 @@ import {
   addProductAPI,
   deleteProductAPI,
 } from 'services/products-API';
-import {
-  AsyncThunkConfig,
-  IProduct,
-  IProductDeleteResponse,
-} from 'types/reduxTypes';
+import { AsyncThunkConfig, IProduct, IProductDeleteResponse } from 'types';
 
 export const fetchProducts = createAsyncThunk<
   IProduct[],

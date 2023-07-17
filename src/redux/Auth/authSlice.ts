@@ -7,7 +7,7 @@ import {
 } from '@reduxjs/toolkit';
 import { register, login, logout, updateUser, refresh } from './authOperations';
 import { getActions, isError } from 'redux/helpersRedux';
-import { IAuthState, IUser, AuthExtraActions } from 'types/reduxTypes';
+import { IAuthState, IUser, AuthExtraActions } from 'types';
 
 const extraActions: AuthExtraActions = [register, login, logout, refresh];
 

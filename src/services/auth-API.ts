@@ -4,7 +4,7 @@ import {
   IUser,
   IRefreshUserResponse,
   UpdateUserResponse,
-} from 'types/reduxTypes';
+} from 'types';
 
 axios.defaults.baseURL = 'https://so-yummy-98ev.onrender.com/api';
 axios.defaults.headers['Access-Control-Allow-Origin'] = '*';

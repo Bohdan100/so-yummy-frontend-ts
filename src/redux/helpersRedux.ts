@@ -1,4 +1,4 @@
-import { AuthExtraActions, ShoppingListExtraActions } from 'types/reduxTypes';
+import { AuthExtraActions, ShoppingListExtraActions } from 'types';
 import { isAnyOf, AnyAction } from '@reduxjs/toolkit';
 
 export const getActions = (
