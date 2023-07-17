@@ -30,7 +30,7 @@ export const Image = styled.img`
   border-radius: ${p => p.theme.radii.image};
   object-fit: cover;
   width: 124px;
-  heigth: 124px;
+  height: 124px;
   @media screen and (min-width: ${p => p.theme.breakpoints[1]}) {
     width: 228px;
     heigth: 232px;
@@ -153,7 +153,7 @@ export const AboutRecipe = styled.p`
   margin-top: 14px;
   font-weight: ${p => p.theme.fontWeights[0]};
   font-size: 8px;
-  letter-spacing: ${p => p.theme.letterSpacings.content}
+  letter-spacing: ${p => p.theme.letterSpacings.content};
   line-height: ${p => p.theme.lineHeights.description};
   color: ${p => p.theme.colors.aboutRecipe};
   @media screen and (min-width: ${p => p.theme.breakpoints[1]}) {
@@ -178,7 +178,7 @@ export const Time = styled.p`
   display: block;
   font-family: ${p => p.theme.fonts.main};
   font-style: normal;
-  letter-spacing: ${p => p.theme.letterSpacings.subheader}
+  letter-spacing: ${p => p.theme.letterSpacings.subheader};
   font-weight: ${p => p.theme.fontWeights[1]};
   font-size: 10px;
   line-height: ${p => p.theme.lineHeights.time};

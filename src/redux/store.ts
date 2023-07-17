@@ -1,11 +1,16 @@
-import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
+import {
+  configureStore,
+  getDefaultMiddleware,
+  Reducer,
+} from '@reduxjs/toolkit';
 import { ThunkDispatch } from '@reduxjs/toolkit';
-import { AnyAction, Store } from 'redux';
+import { AnyAction } from 'redux';
 
 import { authReducer } from './Auth/authSlice';
 import { shoppingListReducer } from './ShoppingList/shoppingListSlice';
-import { ownRecipesReduser } from './OwnRecipes/ownRecipesSlice';
+import { ownRecipesReduсer } from './OwnRecipes/ownRecipesSlice';
 import { themeReducer } from './Theme/themeSlice';
+import { PersistPartial } from 'redux-persist/es/persistReducer';
 
 import {
   persistReducer,
@@ -18,6 +23,7 @@ import {
   REGISTER,
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
+import { IAuthState } from 'types/reduxTypes';
 
 const authPersistConfig = {
   key: 'auth',
@@ -29,14 +35,16 @@ const themePersistConfig = {
   key: 'theme',
   storage,
 };
-const persistedAuthReducer = persistReducer(authPersistConfig, authReducer);
+const persistedAuthReducer: Reducer<IAuthState & PersistPartial, AnyAction> =
+  persistReducer(authPersistConfig, authReducer);
+
 const persistedThemeReducer = persistReducer(themePersistConfig, themeReducer);
 
-export const store: Store = configureStore({
+export const store = configureStore({
   reducer: {
     auth: persistedAuthReducer,
-    // shoppingList: shoppingListReducer,
-    ownRecipes: ownRecipesReduser,
+    shoppingList: shoppingListReducer,
+    ownRecipes: ownRecipesReduсer,
     theme: persistedThemeReducer,
   },
 

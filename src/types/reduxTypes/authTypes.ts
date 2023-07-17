@@ -10,6 +10,7 @@ export interface IAuthState {
   token: null | string;
   isLoading: boolean;
   error: null | string;
+  isRefreshing: boolean;
 }
 
 export interface IUser {
@@ -46,7 +47,7 @@ export type UpdateUserResponse = Pick<IAuthResponse, 'status' | 'code'> & {
   };
 };
 
-export type ExtraActions = (
+export type AuthExtraActions = (
   | typeof register
   | typeof login
   | typeof logout

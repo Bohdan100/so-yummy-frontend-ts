@@ -48,6 +48,7 @@ export interface IOwnRecipesActionPayload {
 
 export interface IOwnRecipeDeleteResponse {
   message: string;
+  recipeId: string;
 }
 
 export interface IFormDataAddRecipe {

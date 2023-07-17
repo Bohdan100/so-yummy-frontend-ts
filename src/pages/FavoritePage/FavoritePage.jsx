@@ -11,7 +11,7 @@ import Loader from 'components/Loader/Loader';
 import ReusableTitle from 'components/ReusableComponents/ReusableTitle';
 import Container from '../../components/MainContainer/';
 import FavoriteList from 'components/FavoriteList';
-import { PaginationComp } from 'components/Pagination/pagination';
+import PaginationComp from 'components/Pagination/Pagination';
 import { NotFavorites } from 'components/FavoriteList/FavoriteList.styled';
 import { Wrapper, ImgWrapper } from 'components/WrapText/WrapText.styled';
 import Mob1 from '../../images/bgPages/searchPage/search_page_mob@1x.png';

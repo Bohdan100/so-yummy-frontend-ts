@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { Outlet } from 'react-router';
 import { Suspense } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useAppDispatch, useAppSelector } from 'hooks/reduxHooks';
 
-import MainContainer from 'components/MainContainer/MainContainer';
-import MyRecipeList from 'components/MyRecipe/MyRecipeList/MyRecipeList';
-import { PaginationComp } from '../../components/Pagination/pagination';
+import MainContainer from 'components/MainContainer';
+import MyRecipeList from 'components/MyRecipe/MyRecipeList/';
+import PaginationComp from 'components/Pagination';
 import { WrapText } from 'components/WrapText/WrapText';
 import Loader from 'components/Loader';
 import {
@@ -20,10 +20,10 @@ import ReusableTitle from '../../components/ReusableComponents/ReusableTitle';
 
 const MyRecipesPage = () => {
   const history = useNavigate();
-  const dispatch = useDispatch();
-  const recipes = useSelector(getOwnRecipesList);
-  const total = useSelector(getTotalOwnRecipes);
-  const isFetching = useSelector(selectIsLoading);
+  const dispatch = useAppDispatch();
+  const recipes = useAppSelector(getOwnRecipesList);
+  const total = useAppSelector(getTotalOwnRecipes);
+  const isFetching = useAppSelector(selectIsLoading);
   const limit = 4;
   const [pageNumber, setPageNumber] = useState(1);
   const { t } = useTranslation();
@@ -32,7 +32,8 @@ const MyRecipesPage = () => {
     dispatch(getOwnRecipes({ page: pageNumber, limit: limit }));
   }, [dispatch, pageNumber]);
 
-  const handleChange = (event, value) => {
+  // TODO - хз, что тут в event
+  const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
     setPageNumber(value);
   };
 

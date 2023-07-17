@@ -1,5 +1,5 @@
-import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { getOwnRecipes } from './ownRecipesOperations';
+import { createSlice, AnyAction, Reducer } from '@reduxjs/toolkit';
+import { getOwnRecipes, deleteOwnRecipe } from './ownRecipesOperations';
 
 import { IOwnRecipesState } from 'types/reduxTypes';
 
@@ -28,15 +28,31 @@ const ownRecipesSlice = createSlice({
       })
       .addCase(getOwnRecipes.rejected, (state, action) => {
         state.isLoading = false;
-        state.error = action.payload;
+        if (action.payload) {
+          state.error = action.payload;
+        }
+      })
+      .addCase(deleteOwnRecipe.pending, state => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(deleteOwnRecipe.fulfilled, (state, action) => {
+        const index = state.ownRecipes.findIndex(
+          recipe => recipe._id === action.payload.recipeId
+        );
+        state.ownRecipes.splice(index, 1);
+        state.isLoading = false;
+        state.error = null;
+      })
+
+      .addCase(deleteOwnRecipe.rejected, (state, action) => {
+        state.isLoading = false;
+        if (action.payload) {
+          state.error = action.payload;
+        }
       }),
-  // .addCase(addOwnRecipe.rejected, (state, action) => {
-  //   state.isLoading = false;
-  //   state.error = action.payload;
-  // })
-  // .addCase(deleteOwnRecipe.rejected, (state, action) => {
-  //   state.isLoading = false;
-  //   state.error = action.payload;
-  // }),
 });
-export const ownRecipesReduser = ownRecipesSlice.reducer;
+export const ownRecipesReduсer = ownRecipesSlice.reducer as Reducer<
+  IOwnRecipesState,
+  AnyAction
+>;

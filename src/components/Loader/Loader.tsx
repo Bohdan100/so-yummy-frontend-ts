@@ -1,7 +1,7 @@
 import PuffLoader from 'react-spinners/PuffLoader';
 import { LoaderWrap, Backdrop } from './Loader.styled';
 
-const Loader = () => {
+const Loader: React.FC = () => {
   return (
     <Backdrop>
       <LoaderWrap>

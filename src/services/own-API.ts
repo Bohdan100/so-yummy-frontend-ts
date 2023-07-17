@@ -1,12 +1,11 @@
 import axios, { AxiosResponse } from 'axios';
 import {
   IOwnRecipesGetResponse,
-  IOwnRecipeDeleteResponse,
   IFormDataAddRecipe,
   IOwnRecipeCreateResponse,
 } from 'types/reduxTypes';
 
-export const getRecipes = async (page?: string, limit?: string) => {
+export const getRecipes = async (page?: number, limit?: number) => {
   if (page && limit) {
     const { data }: AxiosResponse<IOwnRecipesGetResponse> = await axios(
       `/ownRecipe?page=${page}&limit=${limit}`
@@ -35,9 +34,12 @@ export const addRecipe = async (formData: IFormDataAddRecipe) => {
 };
 
 export const deleteRecipe = async (recipeId: string) => {
-  const { data }: AxiosResponse<IOwnRecipeDeleteResponse> = await axios.delete(
+  const { data }: AxiosResponse<{ message: string }> = await axios.delete(
     `/ownRecipe/${recipeId}`
   );
 
-  return data;
+  return {
+    message: data.message,
+    recipeId,
+  };
 };

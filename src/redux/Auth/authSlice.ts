@@ -1,7 +1,15 @@
-import { createSlice, isAnyOf, PayloadAction } from '@reduxjs/toolkit';
+import {
+  createSlice,
+  isAnyOf,
+  PayloadAction,
+  Reducer,
+  AnyAction,
+} from '@reduxjs/toolkit';
 import { register, login, logout, updateUser, refresh } from './authOperations';
 import { getActions, isError } from 'redux/helpersRedux';
-import { IAuthState, IUser } from 'types/reduxTypes';
+import { IAuthState, IUser, AuthExtraActions } from 'types/reduxTypes';
+
+const extraActions: AuthExtraActions = [register, login, logout, refresh];
 
 const initialState: IAuthState = {
   user: {
@@ -13,6 +21,7 @@ const initialState: IAuthState = {
   token: null,
   isLoading: false,
   error: null,
+  isRefreshing: false,
 };
 
 const authSlice = createSlice({
@@ -35,32 +44,40 @@ const authSlice = createSlice({
       .addCase(refresh.fulfilled, (state, action) => {
         state.user = action.payload;
         state.isLoading = false;
+        state.isRefreshing = false;
       })
       .addCase(logout.fulfilled, state => {
         state.user = { name: null, email: null, avatar: null, userId: null };
         state.token = null;
         state.error = null;
         state.isLoading = false;
+        state.isRefreshing = false;
       })
       .addCase(updateUser.fulfilled, (state, action) => {
         state.user.name = action.payload.data.user.name;
         state.user.avatar = action.payload.data.user.avatar;
+        state.isRefreshing = false;
+      })
+      .addCase(refresh.pending, state => {
+        state.isRefreshing = true;
       })
       .addMatcher(
         isAnyOf(register.fulfilled, login.fulfilled),
         (state, action) => {
           state.user = action.payload.data.user;
           state.token = action.payload.data.token;
+          state.isRefreshing = false;
         }
       )
-      .addMatcher(getActions('pending'), state => {
+      .addMatcher(getActions('pending', extraActions), state => {
         state.isLoading = true;
       })
       .addMatcher(isError, (state, action: PayloadAction<string>) => {
         state.isLoading = false;
         state.error = action.payload;
+        state.isRefreshing = false;
       }),
 });
 
-export const authReducer = authSlice.reducer;
+export const authReducer = authSlice.reducer as Reducer<IAuthState, AnyAction>;
 export const { setError, setGoogleAuth } = authSlice.actions;
