@@ -10,7 +10,7 @@ import {
 } from 'helpers';
 
 import { fetchAllCategories } from 'services/categories-API';
-import { addOwnRecipeAPI } from 'redux/OwnRecipes/ownApi';
+import { addRecipe } from 'services/own-API';
 import { getAllIngredients } from 'services/ingredients-API';
 
 import RecipeFormDescriptionFields from './RecipeFormDescriptionFields';
@@ -207,7 +207,7 @@ const AddRecipeForm = () => {
 
     setIsWaitResponse(true);
 
-    addOwnRecipeAPI(dataForSend)
+    addRecipe(dataForSend)
       .then(data => {
         setIsAddRecipe(false);
         setIsWaitResponse(false);

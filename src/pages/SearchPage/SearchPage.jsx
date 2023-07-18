@@ -12,7 +12,7 @@ import Loader from 'components/Loader';
 import { RecipesList } from 'components/CategoriesByName/CategoriesByName.styled';
 
 import { scrollToTop } from 'helpers';
-import { PaginationComp } from 'components/Pagination/pagination';
+import PaginationComp from 'components/Pagination/Pagination';
 import { FetchSearchedMeals } from 'services/search-meals-API';
 import { useDesktopCheck } from 'hooks/desktopCheck';
 

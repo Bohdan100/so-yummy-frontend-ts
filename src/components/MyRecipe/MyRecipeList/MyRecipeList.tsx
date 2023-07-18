@@ -1,14 +1,19 @@
 import { List } from './MyRecipeList.styled';
-import MyRecipeItem from '../MyRecipeItem/MyRecipeItem';
+import MyRecipeItem from '../MyRecipeItem';
 
-const MyRecipeList = ({ data }) => {
+import { IRecipe } from 'types';
+
+interface IMyRecipeListProps {
+  data: IRecipe[];
+}
+
+const MyRecipeList: React.FC<IMyRecipeListProps> = ({ data }) => {
   return (
     <List>
-      {data.map(({ category, description, preview, time, title, _id }) => {
+      {data.map(({ description, preview, time, title, _id }) => {
         return (
           <MyRecipeItem
             key={_id}
-            category={category}
             description={description}
             preview={preview}
             time={time}

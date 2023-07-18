@@ -1,6 +1,9 @@
 import { useNavigate } from 'react-router';
-import { toast } from 'react-toastify';
+import { useAppDispatch } from 'hooks/reduxHooks';
+// TODO
+// import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
+import { deleteOwnRecipe } from 'redux/OwnRecipes/ownRecipesOperations';
 
 import {
   Item,
@@ -17,19 +20,32 @@ import {
   Image,
   IconBtn,
 } from './MyRecipeItem.styled';
-import { useDispatch } from 'react-redux';
-import { deleteOwnRecipe } from 'redux/OwnRecipes/OwnRecipesOperations';
 
-const MyRecipeItem = ({ description, preview, time, title, id }) => {
-  const dispatch = useDispatch();
+interface IMyRecipeItemProps {
+  description: string;
+  preview: string;
+  time: string;
+  title: string;
+  id: string;
+}
+
+const MyRecipeItem: React.FC<IMyRecipeItemProps> = ({
+  description,
+  preview,
+  time,
+  title,
+  id: recipeId,
+}) => {
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const { t } = useTranslation();
 
-  const handleChange = id => {
-    navigate(`/recipes/${id}`);
+  const handleOpenOwnRecipe = (recipeId: string) => {
+    navigate(`/recipes/${recipeId}`);
   };
+
   return (
-    <Item key={id}>
+    <Item key={recipeId}>
       <MainBox>
         <Image src={preview} alt={title} />
         <Container>
@@ -40,8 +56,9 @@ const MyRecipeItem = ({ description, preview, time, title, id }) => {
                 type="button"
                 onClick={() =>
                   dispatch(
-                    deleteOwnRecipe(id),
-                    toast.success(t('myRecipeItem.success'))
+                    deleteOwnRecipe({ recipeId })
+                    // TODO
+                    // toast.success(t('myRecipeItem.success'))
                   )
                 }
               >
@@ -55,7 +72,7 @@ const MyRecipeItem = ({ description, preview, time, title, id }) => {
             <Time>
               {time} {t('myRecipeItem.time')}
             </Time>
-            <BtnSee onClick={() => handleChange(id)}>
+            <BtnSee onClick={() => handleOpenOwnRecipe(recipeId)}>
               {t('myRecipeItem.btn')}
             </BtnSee>
           </WrapperUp>
