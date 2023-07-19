@@ -1,24 +1,24 @@
-import { useTranslation } from "react-i18next";
-import { UA, GB } from "country-flag-icons/react/1x1";
-import { Flag, Container, Title, Button, Box } from "./LangSwitcher.styled";
+import { useTranslation } from 'react-i18next';
+import { UA, GB } from 'country-flag-icons/react/1x1';
+import { Flag, Container, Title, Button, Box } from './LangSwitcher.styled';
 
 const LangSwitcher = ({ position }) => {
   const { i18n } = useTranslation();
 
   const locales = {
-    en: { title: "EN" },
-    uk: { title: "UK" },
+    en: { title: 'EN' },
+    uk: { title: 'UK' },
   };
 
   const flags = {
-    en: <GB style={{ borderRadius: "50%" }} />,
-    uk: <UA style={{ borderRadius: "50%" }} />,
+    en: <GB style={{ borderRadius: '50%' }} />,
+    uk: <UA style={{ borderRadius: '50%' }} />,
   };
 
   const langToggler = () => {
-    i18n.language === "en"
-      ? i18n.changeLanguage("uk")
-      : i18n.changeLanguage("en");
+    i18n.language === 'en'
+      ? i18n.changeLanguage('uk')
+      : i18n.changeLanguage('en');
   };
 
   return (

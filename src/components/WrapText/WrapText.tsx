@@ -9,7 +9,7 @@ import Desktop2 from '../../images/bgPages/searchPage/search_page_desktop@2x.png
 
 import { Wrapper, ImgWrapper, Text } from './WrapText.styled';
 
-export const WrapText = () => {
+export const WrapText: React.FC = () => {
   const { t } = useTranslation();
   return (
     <Wrapper>
@@ -26,9 +26,7 @@ export const WrapText = () => {
           <img src={Mob1} srcSet={`${Mob1}, ${Mob2} 2x`} alt="no recipes" />
         </picture>
       </ImgWrapper>
-      <Text>
-        {t('myRecipesPage.emptyList')}
-      </Text>
+      <Text>{t('myRecipesPage.emptyList')}</Text>
     </Wrapper>
   );
 };
