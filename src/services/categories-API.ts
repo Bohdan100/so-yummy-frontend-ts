@@ -3,7 +3,7 @@ import {
   ICategoriesResponse,
   IRecipesByCategoryResponse,
   IRecipesByFourCatResponse,
-} from 'types/recipesTypes';
+} from 'types';
 
 export const fetchAllCategories = async () => {
   const { data }: AxiosResponse<ICategoriesResponse> = await axios.get(

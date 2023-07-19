@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { IRecipe } from 'types/recipesTypes';
+import { IRecipe } from 'types';
 import {
   RecipeCardImg,
   RecipeCardWrapper,

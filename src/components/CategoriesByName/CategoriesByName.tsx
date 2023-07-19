@@ -2,7 +2,7 @@ import { FC, useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import { toast } from 'react-toastify';
 import * as API from 'services/categories-API';
-import { IRecipe } from 'types/recipesTypes';
+import { IRecipe } from 'types';
 import Loader from 'components/Loader';
 import RecipeCard from 'components/ReusableComponents/RecipeCard/RecipeCard';
 import NotFoundWrapp from 'components/ReusableComponents/NotFoundWrapp';

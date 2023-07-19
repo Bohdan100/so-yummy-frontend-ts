@@ -6,7 +6,7 @@ import * as API from 'services/categories-API';
 import Loader from 'components/Loader';
 import NotFoundWrapp from 'components/ReusableComponents/NotFoundWrapp';
 import RecipeCard from 'components/ReusableComponents/RecipeCard/RecipeCard';
-import { IRecipe, IRecipesByFourCategories } from 'types/recipesTypes';
+import { IRecipe, IRecipesByFourCategories } from 'types';
 import {
   CategoryList,
   SeeAllBtn,
