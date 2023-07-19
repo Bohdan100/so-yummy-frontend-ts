@@ -1,3 +1,5 @@
+import { IRecipe } from './index';
+
 interface IResponse {
   status: string;
   code: number;
@@ -6,32 +8,6 @@ interface IResponse {
 export interface ICategoriesResponse extends IResponse {
   data: string[];
 }
-
-export type IRecipe = {
-  _id: string;
-  title: string;
-  category: string;
-  area: string;
-  instructions: string;
-  description: string;
-  thumb: string;
-  preview: string;
-  time: string;
-  popularity: number;
-  favorites: [];
-  likes: [];
-  youtube: string;
-  tags: [];
-  createdAt: string;
-  updatedAt: string;
-  owner?: string;
-  ingredients: [
-    {
-      id: string;
-      measure: string;
-    }
-  ];
-};
 
 export interface IRecipesByCategoryResponse extends IResponse {
   data: IRecipe[];
