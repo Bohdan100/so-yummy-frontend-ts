@@ -1,6 +1,13 @@
-export type IAllRecipes = IOneRecipe[];
+interface IResponse {
+  status: string;
+  code: number;
+}
 
-export type IOneRecipe = {
+export interface ICategoriesResponse extends IResponse {
+  data: string[];
+}
+
+export type IRecipe = {
   _id: string;
   title: string;
   category: string;
@@ -26,18 +33,26 @@ export type IOneRecipe = {
   ];
 };
 
+export interface IRecipesByCategoryResponse extends IResponse {
+  data: IRecipe[];
+  total: number;
+  page: string;
+  limit: string;
+}
+
 export interface IRecipesByFourCategories {
   breakfast: Pick<
-    IOneRecipe,
+    IRecipe,
     '_id' | 'title' | 'category' | 'preview' | 'thumb'
   >[];
-  vegan: Pick<IOneRecipe, '_id' | 'title' | 'category' | 'preview' | 'thumb'>[];
+  vegan: Pick<IRecipe, '_id' | 'title' | 'category' | 'preview' | 'thumb'>[];
   miscellaneous: Pick<
-    IOneRecipe,
+    IRecipe,
     '_id' | 'title' | 'category' | 'preview' | 'thumb'
   >[];
-  dessert: Pick<
-    IOneRecipe,
-    '_id' | 'title' | 'category' | 'preview' | 'thumb'
-  >[];
+  dessert: Pick<IRecipe, '_id' | 'title' | 'category' | 'preview' | 'thumb'>[];
+}
+
+export interface IRecipesByFourCatResponse extends IResponse {
+  data: IRecipesByFourCategories;
 }

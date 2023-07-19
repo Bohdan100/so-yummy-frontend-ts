@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { IOneRecipe } from 'types/recipesTypes';
+import { IRecipe } from 'types/recipesTypes';
 import {
   RecipeCardImg,
   RecipeCardWrapper,
@@ -9,7 +9,7 @@ import {
 } from './RecipeCard.styled';
 
 interface IRecipeCardProps {
-  dish: IOneRecipe;
+  dish: IRecipe;
 }
 
 const RecipeCard: FC<IRecipeCardProps> = ({ dish }) => {
