@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { Dispatch, SetStateAction, useRef, useState, FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { allTime } from 'data/dataForAddRecipeForm';
@@ -23,21 +23,48 @@ import {
   SelectItem,
 } from './RecipeFormDescriptionFields.styled';
 
-import { useSelector } from 'react-redux';
+import { useAppSelector } from 'hooks/reduxHooks';
 import { selectTheme } from 'redux/Theme/themeSelectors';
 
-const RecipeFormDescriptionFields = ({
+import { IFormErrors } from 'types';
+
+interface IRecipeFormDescriptionFieldsProps {
+  allCategory: string[];
+  image: {
+    preview: File | null;
+    setPreview: Dispatch<SetStateAction<File | null>>;
+  };
+  name: {
+    title: string;
+    setTitle: Dispatch<SetStateAction<string>>;
+  };
+  descriptionData: {
+    description: string;
+    setDescription: Dispatch<SetStateAction<string>>;
+  };
+  categoryData: {
+    category: string;
+    setCategory: Dispatch<SetStateAction<string>>;
+  };
+  cokingTime: {
+    time: string;
+    setTime: Dispatch<SetStateAction<string>>;
+  };
+  formErrors: IFormErrors;
+}
+
+const RecipeFormDescriptionFields: FC<IRecipeFormDescriptionFieldsProps> = ({
   allCategory,
   image: { preview, setPreview },
   name: { title, setTitle },
   descriptionData: { description, setDescription },
   categoryData: { category, setCategory },
   cokingTime: { time, setTime },
-  formErrors = {},
+  formErrors,
 }) => {
-  const theme = useSelector(selectTheme);
-  const [isActiveCategory, setIsActiveCategory] = useState(false);
-  const [isActiveTime, setIsActiveTime] = useState(false);
+  const theme = useAppSelector(selectTheme);
+  const [isActiveCategory, setIsActiveCategory] = useState<boolean>(false);
+  const [isActiveTime, setIsActiveTime] = useState<boolean>(false);
   const inputEl = useRef(null);
   const { t } = useTranslation();
 
@@ -45,8 +72,8 @@ const RecipeFormDescriptionFields = ({
     <InfoWrapper>
       <ImgWrapperForError>
         <ImgWithPreview imgAdd={preview} setImgAdd={setPreview} />
-        {formErrors?.preview && (
-          <ErrMsgForImg>{formErrors?.preview}</ErrMsgForImg>
+        {Object.keys(formErrors).length !== 0 && formErrors?.preview && (
+          <ErrMsgForImg>{formErrors.preview}</ErrMsgForImg>
         )}
       </ImgWrapperForError>
 
@@ -80,7 +107,7 @@ const RecipeFormDescriptionFields = ({
         <WrapperCategory>
           <Input
             type="text"
-            readOnly="readonly"
+            readOnly={true}
             placeholder={t('recipeFormDescriptionFields.placeholderThird')}
             style={{ cursor: 'pointer' }}
           />

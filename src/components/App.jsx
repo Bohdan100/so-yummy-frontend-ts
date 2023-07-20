@@ -1,26 +1,27 @@
+import { lazy, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Route, Routes } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import { theme as lightMode, darkTheme as darkMode } from '../constants';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import '../i18n';
+
 import { GlobalStyle } from './GlobalStyle';
 
-import { lazy, useEffect } from 'react';
-import { Route, Routes } from 'react-router-dom';
-import CategoriesByName from './CategoriesByName';
-import { useDispatch, useSelector } from 'react-redux';
 import { refresh } from 'redux/Auth/authOperations';
 import { selectTheme } from 'redux/Theme/themeSelectors';
 import { selectIsRefreshing, selectToken } from 'redux/Auth/authSelectors';
 import { fetchProducts } from 'redux/ShoppingList/shoppingListOperations';
 
 import Loader from 'components/Loader/Loader';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
 import Layout from 'components/Layout';
 import SharedLayout from 'components/SharedLayout';
 import GoogleRedirect from 'components/GoogleRedirect';
 import PublicRoute from './Routes/PublicRoute';
 import PrivateRoute from './Routes/PrivateRoute';
-import '../i18n';
+import CategoriesByName from './CategoriesByName';
 
 const WelcomePage = lazy(() => import('pages/WelcomePage'));
 const RegisterPage = lazy(() => import('pages/RegisterPage'));
@@ -39,7 +40,6 @@ export const App = () => {
   const dispatch = useDispatch();
   const theme = useSelector(selectTheme);
   const isRefreshUser = useSelector(selectIsRefreshing);
-
   const userThemeMode = theme === 'light' ? lightMode : darkMode;
   const token = useSelector(selectToken);
 
@@ -47,9 +47,12 @@ export const App = () => {
     if (!token) {
       return;
     }
-    dispatch(refresh()).then(res => {if (!res.error) {
-        dispatch(fetchProducts())
-      }})
+
+    dispatch(refresh()).then(res => {
+      if (!res.error) {
+        dispatch(fetchProducts());
+      }
+    });
   }, [dispatch, token]);
 
   return isRefreshUser ? (

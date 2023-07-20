@@ -56,7 +56,7 @@ export interface IFormDataAddRecipe {
   description: string;
   ingredients: IIngridient[];
   instructions: string;
-  preview: string | null;
+  preview: File | null;
   time: string;
   title: string;
 }

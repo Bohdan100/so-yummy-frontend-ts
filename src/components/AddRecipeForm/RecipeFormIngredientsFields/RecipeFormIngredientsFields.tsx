@@ -1,3 +1,4 @@
+import { FC } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { useTranslation } from 'react-i18next';
 
@@ -19,7 +20,27 @@ import {
   ErrMessage,
 } from './RecipeFormIngredientsFields.styled';
 
-const RecipeFormIngredientsFields = ({
+import {
+  IFormErrors,
+  IIngridientForLocalStorage,
+  IIngridientFromDB,
+} from 'types';
+import { Dispatch, SetStateAction } from 'react';
+
+interface IRecipeFormIngredientsFieldsProps {
+  ingredients: IIngridientForLocalStorage[];
+  setIngredients: Dispatch<SetStateAction<IIngridientForLocalStorage[]>>;
+  onUpdateIngridient: (
+    idInput: string,
+    ingridientData: Omit<IIngridientForLocalStorage, 'idInput'>
+  ) => void;
+
+  onDeleteIngridient: (id: string) => void;
+  allIngredients: IIngridientFromDB[];
+  formErrors: IFormErrors;
+}
+
+const RecipeFormIngredientsFields: FC<IRecipeFormIngredientsFieldsProps> = ({
   ingredients = [],
   setIngredients,
   onUpdateIngridient,
