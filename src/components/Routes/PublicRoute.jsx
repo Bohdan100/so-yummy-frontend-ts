@@ -6,6 +6,6 @@ export default function PublicRoute({
   redirectTo = '/',
 }) {
   const { token } = useAuth();
-  
+
   return token ? <Navigate to={redirectTo} /> : <Component />;
 }

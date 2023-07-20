@@ -25,8 +25,8 @@ const LangSwitcher = ({ position }) => {
     <Container position={position}>
       <Button type="submit" onClick={langToggler}>
         <Box>
-          <Flag>{flags[i18n.language]}</Flag>
-          <Title>{locales[i18n.language].title}</Title>
+          {/* <Flag>{flags[i18n.language]}</Flag>
+          <Title>{locales[i18n.language].title}</Title> */}
         </Box>
       </Button>
     </Container>

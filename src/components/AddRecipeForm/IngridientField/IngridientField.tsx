@@ -1,6 +1,6 @@
 import { useState, useRef, useMemo, useEffect } from 'react';
-import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
+import { useAppSelector } from 'hooks/reduxHooks';
 
 import { ReactComponent as Arrow } from '../../../images/icons/chevron-down.svg';
 import { ReactComponent as CloseIcon } from '../../../images/icons/close-20.svg';
@@ -26,7 +26,21 @@ import {
   ArrowWrapperUnit,
 } from './IngridientField.styled';
 
-const IngridientField = ({
+import { IIngridientForLocalStorage, IIngridientFromDB } from 'types';
+
+interface IIngridientFieldProps {
+  allIngredients: IIngridientFromDB[];
+  id: string;
+  dataInput: IIngridientForLocalStorage;
+  onUpdateIngridient: (
+    idInput: string,
+    ingridientData: Omit<IIngridientForLocalStorage, 'idInput'>
+  ) => void;
+  onRemove: (id: string) => void;
+  errorMessage: string;
+}
+
+const IngridientField: React.FC<IIngridientFieldProps> = ({
   allIngredients,
   id: idInput,
   dataInput,
@@ -34,19 +48,26 @@ const IngridientField = ({
   onRemove,
   errorMessage,
 }) => {
-  const theme = useSelector(selectTheme);
-  const inputEl = useRef(null);
-  const [isActive, setIsActive] = useState(false);
-  const [isActiveUnitField, setIsActiveUnitField] = useState(false);
-  const [titleIngridient, setTitleIngridient] = useState(dataInput.ttl);
-  const [amount, setAmount] = useState(dataInput.amount);
-  const [unit, setUnit] = useState(dataInput.unit);
-  const [filter, setFilter] = useState(() => dataInput?.ttl || '');
+  const theme = useAppSelector(selectTheme);
+  const inputDivEl = useRef<HTMLDivElement | null>(null);
+  const inputLiEl = useRef<HTMLLIElement | null>(null);
+  const [isActive, setIsActive] = useState<boolean>(false);
+  const [isActiveUnitField, setIsActiveUnitField] = useState<boolean>(false);
+  const [titleIngridient, setTitleIngridient] = useState<string>(dataInput.ttl);
+  const [amount, setAmount] = useState<string>(dataInput.amount);
+  const [unit, setUnit] = useState<string>(dataInput.unit);
+  const [filter, setFilter] = useState<string>(() => dataInput?.ttl || '');
   const { t } = useTranslation();
 
   useEffect(() => {
-    const onClick = e => {
-      inputEl.current.contains(e.target) || setIsActive(!isActive);
+    const onClick = (e: MouseEvent) => {
+      if (
+        (inputDivEl.current &&
+          !inputDivEl.current.contains(e.target as Node)) ||
+        (inputLiEl.current && !inputLiEl.current.contains(e.target as Node))
+      ) {
+        setIsActive(!isActive);
+      }
     };
 
     if (isActive) {
@@ -57,19 +78,21 @@ const IngridientField = ({
     };
   }, [isActive]);
 
-  const handleChangeAmount = digits => {
-    if (digits.length > 3) {
+  const handleChangeAmount = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.value.length > 3) {
       return;
     }
-    if (digits === '0') {
+    if (e.target.value === '0') {
       setAmount('');
       return;
     }
-    setAmount(digits);
+    setAmount(e.target.value);
 
     onUpdateIngridient(idInput, {
-      amount: digits,
+      amount: e.target.value,
       unit,
+      id: dataInput.id,
+      ttl: dataInput.ttl,
     });
   };
 
@@ -82,7 +105,7 @@ const IngridientField = ({
   }, [allIngredients, filter]);
 
   return (
-    <IngridientItem key={idInput} ref={inputEl}>
+    <IngridientItem key={idInput} ref={inputLiEl}>
       <WrapperIngredient>
         <InputIngredient
           type="text"
@@ -143,12 +166,12 @@ const IngridientField = ({
           autoComplete="off"
           min="1"
           value={amount}
-          onChange={e => handleChangeAmount(e.target.value)}
+          onChange={handleChangeAmount}
         />
         <WrapperUnit>
           <>
             <SelectUnit
-              ref={inputEl}
+              ref={inputDivEl}
               onClick={e => setIsActiveUnitField(!isActiveUnitField)}
             >
               <WrapperOptionUnit>{unit}</WrapperOptionUnit>
@@ -167,6 +190,8 @@ const IngridientField = ({
                       onUpdateIngridient(idInput, {
                         amount,
                         unit: value,
+                        ttl: dataInput.ttl,
+                        id: dataInput.id,
                       });
                     }}
                   >

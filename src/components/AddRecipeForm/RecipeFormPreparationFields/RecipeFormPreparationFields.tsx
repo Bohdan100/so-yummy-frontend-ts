@@ -1,3 +1,5 @@
+import { Dispatch, SetStateAction } from 'react';
+
 import { useTranslation } from 'react-i18next';
 import {
   WrapperTextarea,
@@ -6,7 +8,17 @@ import {
   ErrMessage,
 } from './RecipeFormPreparationFields.styled';
 
-const RecipeFormPreparationFields = ({ value, onChange, formErrors }) => {
+import { IFormErrors } from 'types';
+
+interface IRecipeFormPreparationFieldsProps {
+  value: string;
+  onChange: Dispatch<SetStateAction<string>>;
+  formErrors: IFormErrors;
+}
+
+const RecipeFormPreparationFields: React.FC<
+  IRecipeFormPreparationFieldsProps
+> = ({ value, onChange, formErrors }) => {
   const { t } = useTranslation();
 
   return (

@@ -2,6 +2,7 @@ import { useState, useEffect, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
+import { ValidationError } from 'yup';
 
 import {
   addRecipeValidationSchema,
@@ -19,6 +20,13 @@ import RecipeFormPreparationFields from './RecipeFormPreparationFields';
 import Loader from 'components/Loader';
 
 import { Form, SubmitBtn } from './AddRecipeForm.styled';
+import {
+  IIngridientFromDB,
+  IIngridientForLocalStorage,
+  IAddFormData,
+  IFormErrors,
+  IFormDataAddRecipe,
+} from 'types';
 
 const STORAGE_KEY_ADDING_RESIPE = 'added-data-recipe';
 
@@ -26,42 +34,42 @@ let isLoadAllCategory = false;
 let isLoadAllIngredients = false;
 
 const AddRecipeForm = () => {
-  const [allCategory, setAllCategory] = useState([]);
-  const [allIngredients, setAllIngredients] = useState([]);
-  const [preview, setPreview] = useState(null);
-  const [title, setTitle] = useState(
+  const [allCategory, setAllCategory] = useState<string[]>([]);
+  const [allIngredients, setAllIngredients] = useState<IIngridientFromDB[]>([]);
+  const [preview, setPreview] = useState<null | File>(null);
+  const [title, setTitle] = useState<string>(
     () => storageServices.get(STORAGE_KEY_ADDING_RESIPE)?.title || ''
   );
-  const [description, setDescription] = useState(
+  const [description, setDescription] = useState<string>(
     () => storageServices.get(STORAGE_KEY_ADDING_RESIPE)?.description || ''
   );
 
-  const [category, setCategory] = useState(
+  const [category, setCategory] = useState<string>(
     () => storageServices.get(STORAGE_KEY_ADDING_RESIPE)?.category || 'Beef'
   );
 
-  const [time, setTime] = useState(
+  const [time, setTime] = useState<string>(
     () => storageServices.get(STORAGE_KEY_ADDING_RESIPE)?.time || '15 min'
   );
 
-  const [ingredients, setIngredients] = useState(
+  const [ingredients, setIngredients] = useState<IIngridientForLocalStorage[]>(
     () => storageServices.get(STORAGE_KEY_ADDING_RESIPE)?.ingredients || []
   );
 
-  const [instructions, setInstructions] = useState(
+  const [instructions, setInstructions] = useState<string>(
     () => storageServices.get(STORAGE_KEY_ADDING_RESIPE)?.instructions || ''
   );
 
-  const [formErrors, setFormErrors] = useState({});
-  const [isShowErrors, setIsShowErrors] = useState(false);
-  const [isAddRecipe, setIsAddRecipe] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-  const [isWaitResponse, setIsWaitResponse] = useState(false);
+  const [formErrors, setFormErrors] = useState<IFormErrors | {}>({});
+  const [isShowErrors, setIsShowErrors] = useState<boolean>(false);
+  const [isAddRecipe, setIsAddRecipe] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isWaitResponse, setIsWaitResponse] = useState<boolean>(false);
   const { t } = useTranslation();
 
   const navigate = useNavigate();
 
-  const formData = useMemo(
+  const formData: IAddFormData = useMemo(
     () => ({
       preview: preview || undefined,
       title: title.trim(),
@@ -70,7 +78,7 @@ const AddRecipeForm = () => {
       time,
       ingredients: ingredients.map(({ id, unit, amount }) => ({
         id,
-        measure: `${(amount, unit)}`,
+        measure: `${amount}${unit}`,
       })),
       instructions: instructions.trim(),
     }),
@@ -102,7 +110,7 @@ const AddRecipeForm = () => {
     setIsLoading(true);
 
     getCategories()
-      .then(({ categoriesList }) => {
+      .then(({ data: categoriesList }) => {
         if (categoriesList.length > 0 && !category) {
           setCategory(categoriesList[0]);
         }
@@ -125,9 +133,11 @@ const AddRecipeForm = () => {
         setFormErrors({});
         return true;
       } catch (error) {
-        const errors = error.inner.reduce(createObjErrorResipeForm, {});
-        setFormErrors(errors);
-        return false;
+        if (error instanceof ValidationError) {
+          const errors = error.inner.reduce(createObjErrorResipeForm, {});
+          setFormErrors(errors);
+          return false;
+        }
       }
     }
     validateForm();
@@ -137,12 +147,9 @@ const AddRecipeForm = () => {
     if (isLoadAllIngredients) return;
     isLoadAllIngredients = true;
 
-    const getAllIngredientsList = async () => {
-      const ingredientsList = (await getAllIngredients()) || [];
-      return ingredientsList;
-    };
     setIsLoading(true);
-    getAllIngredientsList()
+
+    getAllIngredients()
       .then(data => {
         setAllIngredients(data);
       })
@@ -153,7 +160,7 @@ const AddRecipeForm = () => {
       });
   }, []);
 
-  const handleDeleteIngridient = id => {
+  const handleDeleteIngridient = (id: string) => {
     const filteredData = ingredients.filter(el => el.idInput !== id);
     setIngredients(filteredData);
   };
@@ -163,7 +170,10 @@ const AddRecipeForm = () => {
     storageServices.save(STORAGE_KEY_ADDING_RESIPE, null);
   };
 
-  const onUpdateDataInInputIngridient = (idInput, ingridientData) => {
+  const onUpdateDataInInputIngridient = (
+    idInput: string,
+    ingridientData: Omit<IIngridientForLocalStorage, 'idInput'>
+  ) => {
     const changeData = ingredients.map(elem => {
       if (elem.idInput === idInput) {
         return { ...elem, ...ingridientData };
@@ -174,7 +184,7 @@ const AddRecipeForm = () => {
     setIngredients([...changeData]);
   };
 
-  const onSubmitHandler = e => {
+  const onSubmitHandler = (e: React.FormEvent) => {
     e.preventDefault();
     if (isAddRecipe) {
       return;
@@ -188,7 +198,7 @@ const AddRecipeForm = () => {
     }
     setIsAddRecipe(true);
 
-    const dataForSend = {
+    const dataForSend: IFormDataAddRecipe = {
       preview,
       title: title.trim(),
       description: description.trim(),
@@ -211,10 +221,7 @@ const AddRecipeForm = () => {
       .then(data => {
         setIsAddRecipe(false);
         setIsWaitResponse(false);
-        if (data?.error) {
-          toast.error(data.error.response.data.message);
-          return;
-        }
+
         toast.success(`Your recipe ${title} has been created`);
         resetDataFormInLocalStorage();
         setIsShowErrors(false);
