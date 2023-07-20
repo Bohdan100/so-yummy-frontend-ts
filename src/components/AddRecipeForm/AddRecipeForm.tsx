@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, FC } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
@@ -33,7 +33,7 @@ const STORAGE_KEY_ADDING_RESIPE = 'added-data-recipe';
 let isLoadAllCategory = false;
 let isLoadAllIngredients = false;
 
-const AddRecipeForm = () => {
+const AddRecipeForm: FC = () => {
   const [allCategory, setAllCategory] = useState<string[]>([]);
   const [allIngredients, setAllIngredients] = useState<IIngridientFromDB[]>([]);
   const [preview, setPreview] = useState<null | File>(null);

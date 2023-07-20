@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useRef, useState } from 'react';
+import { Dispatch, SetStateAction, useRef, useState, FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { allTime } from 'data/dataForAddRecipeForm';
@@ -53,9 +53,7 @@ interface IRecipeFormDescriptionFieldsProps {
   formErrors: IFormErrors;
 }
 
-const RecipeFormDescriptionFields: React.FC<
-  IRecipeFormDescriptionFieldsProps
-> = ({
+const RecipeFormDescriptionFields: FC<IRecipeFormDescriptionFieldsProps> = ({
   allCategory,
   image: { preview, setPreview },
   name: { title, setTitle },

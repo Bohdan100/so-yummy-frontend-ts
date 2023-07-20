@@ -1,3 +1,4 @@
+import { FC } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { useTranslation } from 'react-i18next';
 
@@ -39,9 +40,7 @@ interface IRecipeFormIngredientsFieldsProps {
   formErrors: IFormErrors;
 }
 
-const RecipeFormIngredientsFields: React.FC<
-  IRecipeFormIngredientsFieldsProps
-> = ({
+const RecipeFormIngredientsFields: FC<IRecipeFormIngredientsFieldsProps> = ({
   ingredients = [],
   setIngredients,
   onUpdateIngridient,

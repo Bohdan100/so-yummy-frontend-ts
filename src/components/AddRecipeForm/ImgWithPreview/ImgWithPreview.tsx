@@ -1,4 +1,11 @@
-import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react';
+import {
+  Dispatch,
+  SetStateAction,
+  useEffect,
+  useRef,
+  useState,
+  FC,
+} from 'react';
 
 import {
   WrapperImg,
@@ -57,10 +64,7 @@ interface IImgWithPreviewProps {
   setImgAdd: Dispatch<SetStateAction<File | null>>;
 }
 
-const ImgWithPreview: React.FC<IImgWithPreviewProps> = ({
-  imgAdd,
-  setImgAdd,
-}) => {
+const ImgWithPreview: FC<IImgWithPreviewProps> = ({ imgAdd, setImgAdd }) => {
   const [img, setImg] = useState('');
   const inputEl = useRef<HTMLImageElement | null>(null);
 

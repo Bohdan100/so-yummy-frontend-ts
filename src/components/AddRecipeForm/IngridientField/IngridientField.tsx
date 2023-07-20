@@ -1,4 +1,4 @@
-import { useState, useRef, useMemo, useEffect } from 'react';
+import { useState, useRef, useMemo, useEffect, FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useAppSelector } from 'hooks/reduxHooks';
 
@@ -40,7 +40,7 @@ interface IIngridientFieldProps {
   errorMessage: string;
 }
 
-const IngridientField: React.FC<IIngridientFieldProps> = ({
+const IngridientField: FC<IIngridientFieldProps> = ({
   allIngredients,
   id: idInput,
   dataInput,

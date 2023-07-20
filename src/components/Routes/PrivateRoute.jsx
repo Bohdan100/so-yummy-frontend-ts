@@ -7,7 +7,7 @@ export default function PrivateRoute({
   redirectTo = '/',
 }) {
   const { token } = useAuth();
-  // TODO - проверить работает логикак если токен expired
+  // TODO - проверить работает логика если токен expired
   const { isExpired } = useJwt(token);
   console.log('isExpired', isExpired);
 

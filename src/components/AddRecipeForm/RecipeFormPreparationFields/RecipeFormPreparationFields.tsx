@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction } from 'react';
+import { Dispatch, SetStateAction, FC } from 'react';
 
 import { useTranslation } from 'react-i18next';
 import {
@@ -16,9 +16,11 @@ interface IRecipeFormPreparationFieldsProps {
   formErrors: IFormErrors;
 }
 
-const RecipeFormPreparationFields: React.FC<
-  IRecipeFormPreparationFieldsProps
-> = ({ value, onChange, formErrors }) => {
+const RecipeFormPreparationFields: FC<IRecipeFormPreparationFieldsProps> = ({
+  value,
+  onChange,
+  formErrors,
+}) => {
   const { t } = useTranslation();
 
   return (
