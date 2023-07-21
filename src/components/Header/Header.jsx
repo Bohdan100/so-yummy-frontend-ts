@@ -26,8 +26,7 @@ const Header = () => {
   const theme = useSelector(selectTheme);
   const isRecipesPage = pathname.includes('recipes');
 
-  const color =
-    isRecipesPage || theme === 'light' ? '#22252A' : '#FAFAFA';
+  const color = isRecipesPage || theme === 'light' ? '#22252A' : '#FAFAFA';
 
   const [isMobMenuOpen, setIsMobMenuOpen] = useState(false);
   const isMobileDevice = useMedia('(max-width: 1439px)');

@@ -6,7 +6,7 @@ import Loader from 'components/Loader';
 const Layout: FC = () => {
   return (
     <Suspense fallback={<Loader />}>
-      <LangSwitcher position="absolute" />
+      <LangSwitcher />
       <Outlet />
     </Suspense>
   );
