@@ -1,4 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { AxiosError } from 'axios';
 
 import {
   createUser,
@@ -29,8 +30,8 @@ export const register = createAsyncThunk<
       setAuthHeader(res.data.token);
       return res;
     } catch (error) {
-      if (error instanceof Error) {
-        return thunkAPI.rejectWithValue(error.message);
+      if (error instanceof AxiosError) {
+        return thunkAPI.rejectWithValue(String(error.response?.status || 500));
       } else {
         const errorMessage =
           (error as { response?: { data?: { message?: string } } })?.response
@@ -53,8 +54,8 @@ export const login = createAsyncThunk<
       setAuthHeader(res.data.token);
       return res;
     } catch (error) {
-      if (error instanceof Error) {
-        return thunkAPI.rejectWithValue(error.message);
+      if (error instanceof AxiosError) {
+        return thunkAPI.rejectWithValue(String(error.response?.status || 500));
       } else {
         const errorMessage =
           (error as { response?: { data?: { message?: string } } })?.response

@@ -23,7 +23,7 @@ export const useValidation = () => {
   const { ErrorMessages } = useErrorMessages();
 
   return {
-    registerValidationSchema: yup.object().shape({
+    registerSchema: yup.object().shape({
       name: yup
         .string()
         .required(t('auth.error.required'))
@@ -33,18 +33,19 @@ export const useValidation = () => {
       email: yup
         .string()
         .required(t('auth.error.required'))
-        .email(ErrorMessages.email, regExp.email),
+        .matches(regExp.email, ErrorMessages.email),
       password: yup
         .string()
         .required(t('auth.error.required'))
         .min(6, t('auth.error.short', { value: 6 }))
         .matches(regExp.password, ErrorMessages.password),
     }),
-    loginValidationSchema: yup.object().shape({
+
+    loginSchema: yup.object().shape({
       email: yup
         .string()
         .required(t('auth.error.required'))
-        .email(ErrorMessages.email, regExp.email),
+        .matches(regExp.email, ErrorMessages.email),
       password: yup
         .string()
         .required(t('auth.error.required'))

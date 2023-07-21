@@ -1,4 +1,4 @@
-import { useErrorMessages } from './authValidationShemas';
+import { useErrorMessages } from './authValidationSchemas';
 import { useTranslation } from 'react-i18next';
 
 export const useErrorStatus = () => {
@@ -12,16 +12,18 @@ export const useErrorStatus = () => {
       409: t('auth.error.409'),
       500: t('auth.error.500'),
     },
-    getPassErrorStatus: (error, dirty) => {
+    getPassErrorStatus: (
+      error: string,
+      dirty: boolean
+    ): 'valid' | 'inValid' | 'notSecure' => {
       if (!error && dirty) {
         return 'valid';
-      }
-      if (!error && !dirty) {
-        return 'normal';
       } else if (error === ErrorMessages.password) {
         return 'notSecure';
       } else if (error !== ErrorMessages.password) {
         return 'inValid';
+      } else {
+        return 'valid';
       }
     },
   };

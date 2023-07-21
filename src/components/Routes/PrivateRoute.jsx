@@ -9,7 +9,6 @@ export default function PrivateRoute({
   const { token } = useAuth();
   // TODO - проверить работает логика если токен expired
   const { isExpired } = useJwt(token);
-  console.log('isExpired', isExpired);
 
   return !token && !isExpired ? <Navigate to={redirectTo} /> : <Component />;
 }
