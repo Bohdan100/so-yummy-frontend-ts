@@ -141,7 +141,12 @@ const SigninForm: FC = () => {
                 />
                 {touched.email
                   ? errors.email
-                    ? statusIcon[getPassErrorStatus(errors.email, dirty)]
+                    ? statusIcon[
+                        getPassErrorStatus(
+                          errors.email,
+                          dirty
+                        ) as keyof typeof statusIcon
+                      ]
                     : statusIcon['valid']
                   : null}
                 {errors.email && touched.email ? (
@@ -186,7 +191,10 @@ const SigninForm: FC = () => {
                   {touched.password
                     ? errors.password
                       ? passStatusIcon[
-                          getPassErrorStatus(errors.password, dirty)
+                          getPassErrorStatus(
+                            errors.password,
+                            dirty
+                          ) as keyof typeof passStatusIcon
                         ]
                       : passStatusIcon['valid']
                     : null}
