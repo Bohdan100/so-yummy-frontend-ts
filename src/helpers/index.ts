@@ -1,6 +1,4 @@
-export {
-  useValidation, useErrorMessages
-} from './authValidationShemas';
+export { useValidation, useErrorMessages } from './authValidationSchemas';
 
 export * from './updateUserValidationSchema';
 

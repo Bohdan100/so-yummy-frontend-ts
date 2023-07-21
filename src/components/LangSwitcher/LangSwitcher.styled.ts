@@ -8,11 +8,9 @@ export const Container = styled.div<Pick<ILangSwitcherProps, 'position'>>`
   align-items: center;
   justify-content: center;
   display: flex;
-  ${p =>
-    p.position === 'absolute' &&
-    `position: absolute;
+  position: absolute;
   top: 16px;
-  left: 35px;`}
+  left: 35px;
 `;
 
 export const Box = styled.div`

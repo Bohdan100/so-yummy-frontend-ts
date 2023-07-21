@@ -178,15 +178,16 @@ export const StyledLink = styled(Link)`
   }
 `;
 
-export const StatusBox = styled.div`
+export const StatusBox = styled.div<{ colorHover?: string | null }>`
   font-size: 12px;
   margin-top: 8px;
   font-weight: ${p => p.theme.fontWeights[0]};
   line-height: ${p => p.theme.lineHeights.searchSelect};
   transition: ${p => p.theme.transitions.main};
   color: #e74a3b;
-  ${p => p.color === 'notSecure' && `color: #F6C23E`};
-  ${p => p.color === 'valid' && `color: #3CBC81`};
+  color: ${({ colorHover }) => colorHover === 'notSecure' && '#f6c23e'};
+  color: ${({ colorHover }) => colorHover === 'valid' && '#3cbc81'};
+
   @media screen and (min-width: ${p => p.theme.breakpoints[1]}) {
     font-size: 14px;
   }

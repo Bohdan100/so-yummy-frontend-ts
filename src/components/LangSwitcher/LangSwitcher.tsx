@@ -3,19 +3,24 @@ import { useTranslation } from 'react-i18next';
 import { UA, GB } from 'country-flag-icons/react/1x1';
 import { Flag, Container, Title, Button, Box } from './LangSwitcher.styled';
 
-export interface ILangSwitcherProps {
-  position?: 'absolute';
+interface IFlags {
+  en: JSX.Element;
+  uk: JSX.Element;
+}
+interface ILocales {
+  en: { title: string };
+  uk: { title: string };
 }
 
-const LangSwitcher: FC<ILangSwitcherProps> = ({ position }) => {
+const LangSwitcher: FC = () => {
   const { i18n } = useTranslation();
 
-  const locales = {
+  const locales: ILocales = {
     en: { title: 'EN' },
     uk: { title: 'UK' },
   };
 
-  const flags: { en: JSX.Element; uk: JSX.Element } = {
+  const flags: IFlags = {
     en: <GB style={{ borderRadius: '50%' }} />,
     uk: <UA style={{ borderRadius: '50%' }} />,
   };
@@ -27,12 +32,11 @@ const LangSwitcher: FC<ILangSwitcherProps> = ({ position }) => {
   };
 
   return (
-    // TODO - фелиться TS
-    <Container position={position}>
+    <Container>
       <Button type="submit" onClick={langToggler}>
         <Box>
-          <Flag>{flags[i18n.language]}</Flag>
-          <Title>{locales[i18n.language].title}</Title>
+          <Flag>{flags[i18n.language as keyof IFlags]}</Flag>
+          <Title>{locales[i18n.language as keyof ILocales].title}</Title>
         </Box>
       </Button>
     </Container>

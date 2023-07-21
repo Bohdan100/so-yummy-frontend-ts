@@ -1,15 +1,20 @@
-import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Formik } from 'formik';
-import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
-import PulseLoader from 'react-spinners/PulseLoader';
-import { useTranslation } from 'react-i18next';
+import { FC, useEffect, useState } from 'react';
+import { useAppDispatch, useAppSelector } from 'hooks/reduxHooks';
+import { useAuth } from 'hooks';
 import { selectIsLoading } from 'redux/Auth/authSelectors';
 import { login } from 'redux/Auth/authOperations';
 import { fetchProducts } from 'redux/ShoppingList/shoppingListOperations';
+
+import { Formik, FormikHelpers } from 'formik';
+import * as yup from 'yup';
+
 import { useValidation, useErrorStatus } from 'helpers';
-import { useAuth } from 'hooks';
 import { setError } from 'redux/Auth/authSlice';
+
+import { useTranslation } from 'react-i18next';
+import { toast } from 'react-toastify';
+import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
+import PulseLoader from 'react-spinners/PulseLoader';
 
 import {
   EmailIconStyled,
@@ -39,14 +44,19 @@ import {
   GoogleLink,
 } from './SigninForm.styled';
 
-const SigninForm = () => {
-  const [isShowPassword, setIsShowPassword] = useState(false);
-  const isLoading = useSelector(selectIsLoading);
-  const dispatch = useDispatch();
+const SigninForm: FC = () => {
+  const [isShowPassword, setIsShowPassword] = useState<boolean>(false);
+
+  const dispatch = useAppDispatch();
+  const isLoading = useAppSelector(selectIsLoading);
   const { error } = useAuth();
+
   const { ErrorStatus, getPassErrorStatus } = useErrorStatus();
-  const { loginValidationSchema } = useValidation();
+
   const { t } = useTranslation();
+  const { loginSchema } = useValidation();
+  type loginSchemaType = yup.InferType<typeof loginSchema>;
+  const loginValidationSchema = loginSchema as yup.Schema<loginSchemaType>;
 
   useEffect(() => {
     if (error !== null) {
@@ -56,18 +66,28 @@ const SigninForm = () => {
     }
   }, [dispatch, error]);
 
-  const handleSubmitForm = ({ email, password }, { resetForm }) => {
-    dispatch(login({ email, password })).then(res => {
-      if (!res.error) {
+  const initialValues: loginSchemaType = {
+    email: '',
+    password: '',
+  };
+
+  const handleSubmitForm = (
+    { email, password }: loginSchemaType,
+    { resetForm }: FormikHelpers<loginSchemaType>
+  ) => {
+    dispatch(login({ email, password }))
+      .unwrap()
+      .then(() => {
         dispatch(fetchProducts());
         resetForm();
-      }
-    });
+      })
+      .catch(err => toast.error(`Error: ${err}`));
   };
 
   const statusIcon = {
     valid: <CheckIconStyled />,
     inValid: <ErrorIconStyled />,
+    notSecure: <PassWarnIconStyled />,
   };
 
   const passStatusIcon = {
@@ -79,7 +99,7 @@ const SigninForm = () => {
   return (
     <Container>
       <Formik
-        initialValues={{ name: '', email: '', password: '' }}
+        initialValues={initialValues}
         onSubmit={handleSubmitForm}
         validationSchema={loginValidationSchema}
         validateOnBlur
@@ -89,7 +109,11 @@ const SigninForm = () => {
             <TitleContainer>
               <Title>{t('auth.title.login')}</Title>
               <PulseLoader color="#8BAA36" size={12} loading={isLoading} />
-              {error && <ErrorBox>{ErrorStatus[error]}</ErrorBox>}
+              {error && (
+                <ErrorBox>
+                  {ErrorStatus[Number(error) as keyof typeof ErrorStatus]}
+                </ErrorBox>
+              )}
             </TitleContainer>
             <InputContainer>
               <Label htmlFor="email">
@@ -99,20 +123,37 @@ const SigninForm = () => {
                   placeholder={t('auth.form.email')}
                   disabled={isLoading}
                   color={
-                    touched.email && getPassErrorStatus(errors.email, dirty)
+                    touched.email
+                      ? errors.email
+                        ? getPassErrorStatus(errors.email, dirty)
+                        : 'valid'
+                      : null
                   }
                 />
                 <EmailIconStyled
                   color={
-                    touched.email && getPassErrorStatus(errors.email, dirty)
+                    touched.email
+                      ? errors.email
+                        ? getPassErrorStatus(errors.email, dirty)
+                        : 'valid'
+                      : null
                   }
                 />
-                {touched.email &&
-                  statusIcon[getPassErrorStatus(errors.email, dirty)]}
+                {touched.email
+                  ? errors.email
+                    ? statusIcon[
+                        getPassErrorStatus(
+                          errors.email,
+                          dirty
+                        ) as keyof typeof statusIcon
+                      ]
+                    : statusIcon['valid']
+                  : null}
                 {errors.email && touched.email ? (
                   <StatusBox>{errors.email}</StatusBox>
                 ) : null}
               </Label>
+
               <Label htmlFor="password">
                 <Input
                   type={isShowPassword ? 'text' : 'password'}
@@ -120,14 +161,20 @@ const SigninForm = () => {
                   placeholder={t('auth.form.password')}
                   disabled={isLoading}
                   color={
-                    touched.password &&
-                    getPassErrorStatus(errors.password, dirty)
+                    touched.password
+                      ? errors.password
+                        ? getPassErrorStatus(errors.password, dirty)
+                        : 'valid'
+                      : null
                   }
                 />
                 <LockIconStyled
                   color={
-                    touched.password &&
-                    getPassErrorStatus(errors.password, dirty)
+                    touched.password
+                      ? errors.password
+                        ? getPassErrorStatus(errors.password, dirty)
+                        : 'valid'
+                      : null
                   }
                 />
                 <PassIconBox>
@@ -141,13 +188,24 @@ const SigninForm = () => {
                       <AiOutlineEyeInvisible size="24px" />
                     )}
                   </ShowPasswordBtn>
-                  {touched.password &&
-                    passStatusIcon[getPassErrorStatus(errors.password, dirty)]}
+                  {touched.password
+                    ? errors.password
+                      ? passStatusIcon[
+                          getPassErrorStatus(
+                            errors.password,
+                            dirty
+                          ) as keyof typeof passStatusIcon
+                        ]
+                      : passStatusIcon['valid']
+                    : null}
                 </PassIconBox>
                 <StatusBox
-                  color={
-                    touched.password &&
-                    getPassErrorStatus(errors.password, dirty)
+                  colorHover={
+                    touched.password
+                      ? errors.password
+                        ? getPassErrorStatus(errors.password, dirty)
+                        : 'valid'
+                      : null
                   }
                 >
                   {((dirty && touched.password) ||

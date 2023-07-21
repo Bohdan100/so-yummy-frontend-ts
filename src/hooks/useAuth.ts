@@ -1,4 +1,4 @@
-import { useAppSelector } from './reduxHooks';
+import { useAppSelector } from 'hooks/reduxHooks';
 import {
   selectUser,
   selectIsRefreshing,
