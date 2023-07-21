@@ -35,7 +35,7 @@ const LangSwitcher: FC = () => {
     <Container>
       <Button type="submit" onClick={langToggler}>
         <Box>
-          <Flag>{flags[i18n.language as keyof typeof flags]}</Flag>
+          <Flag>{flags[i18n.language as keyof IFlags]}</Flag>
           <Title>{locales[i18n.language as keyof ILocales].title}</Title>
         </Box>
       </Button>
