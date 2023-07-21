@@ -4,8 +4,7 @@ import { IAddFormData } from 'types';
 
 const fileMaxSize = 16777216; // 16MB
 const allowedFileTypes = ['image/jpeg', 'image/jpg', 'image/png'];
-
-export const addRecipeSchema = Yup.object().shape({
+const addRecipeSchema = Yup.object().shape({
   preview: Yup.mixed()
     .test('fileType', 'Only picture files are allowed', function (value) {
       const file = value as File;

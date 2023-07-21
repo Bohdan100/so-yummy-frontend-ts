@@ -1,6 +1,6 @@
 import { Navigate } from 'react-router-dom';
 import { useAuth } from 'hooks';
-import { useJwt } from 'react-jwt';
+// import { useJwt } from 'react-jwt';
 
 export default function PrivateRoute({
   component: Component,
@@ -8,7 +8,8 @@ export default function PrivateRoute({
 }) {
   const { token } = useAuth();
   // TODO - проверить работает логика если токен expired
-  const { isExpired } = useJwt(token);
+  // const { isExpired } = useJwt(token);
+  // console.log('isExpired', isExpired);
 
-  return !token && !isExpired ? <Navigate to={redirectTo} /> : <Component />;
+  return !token ? <Navigate to={redirectTo} /> : <Component />;
 }
