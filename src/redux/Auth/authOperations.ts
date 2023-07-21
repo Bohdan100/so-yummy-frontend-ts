@@ -137,11 +137,11 @@ export const refresh = createAsyncThunk<
 
 export const updateUser = createAsyncThunk<
   UpdateUserResponse,
-  Pick<IUser, 'name' | 'avatar'>,
+  { name: string; avatar: File | string },
   AsyncThunkConfig
 >(
   '/auth/update',
-  async (credentials: Pick<IUser, 'name' | 'avatar'>, thunkAPI) => {
+  async (credentials: { name: string; avatar: File | string }, thunkAPI) => {
     try {
       const data = await updateUserInfo(credentials);
       return data;

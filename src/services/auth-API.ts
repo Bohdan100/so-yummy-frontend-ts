@@ -48,9 +48,10 @@ export const refreshUser = async () => {
   return data;
 };
 
-export const updateUserInfo = async (
-  credentials: Pick<IUser, 'name' | 'avatar'>
-) => {
+export const updateUserInfo = async (credentials: {
+  name: string;
+  avatar: File | string;
+}) => {
   const { data }: AxiosResponse<UpdateUserResponse> = await axios.patch(
     '/auth/edit',
     credentials,
