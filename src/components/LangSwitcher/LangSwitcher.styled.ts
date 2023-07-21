@@ -1,7 +1,6 @@
 import styled from 'styled-components';
-import { ILangSwitcherProps } from './LangSwitcher';
 
-export const Container = styled.div<Pick<ILangSwitcherProps, 'position'>>`
+export const Container = styled.div`
   z-index: 2;
   background-color: #8baa3680;
   border-radius: 10px;
