@@ -1,6 +1,6 @@
 import { useState, FC, ChangeEvent } from 'react';
 import { useAuth, useAppDispatch, useAppSelector } from 'hooks';
-import { Formik, FormikHelpers } from 'formik';
+import { Formik } from 'formik';
 import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
 import { updateUser } from 'redux/Auth/authOperations';
