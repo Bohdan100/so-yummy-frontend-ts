@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { FC, useState, useEffect } from 'react';
 
 import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
@@ -12,14 +12,16 @@ import { scrollToTop } from 'helpers/scrollToTop';
 
 import { HeaderTable, RecipePageStyled } from './RecipePage.styled';
 
-import * as API from '../../services/favorite-API';
+import * as API from '../../services/favorite1-API';
 
-const RecipePage = () => {
-  const [recipeObj, setRecipeObj] = useState(null);
-  const [error, setError] = useState(null);
+import { IRecipeById } from 'types';
+
+const RecipePage: FC = () => {
+  const [recipeObj, setRecipeObj] = useState<IRecipeById | null>(null);
+  const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  const { recipeId } = useParams();
+  const { recipeId } = useParams<{ recipeId?: string }>();
   const { t } = useTranslation();
 
   useEffect(() => {
@@ -27,26 +29,29 @@ const RecipePage = () => {
   }, []);
 
   useEffect(() => {
-    async function getOneRecipe() {
+    async function getOneRecipe(recipeId: string) {
       try {
         setIsLoading(true);
-        const { recipe } = await API.fetchOneRacipes(recipeId);
-        setRecipeObj(recipe);
+        const { data } = await API.fetchOneRacipes(recipeId);
+        setRecipeObj(data);
+        setError(null);
       } catch (error) {
-        setError({ error });
+        if (error instanceof Error) {
+          setError(error.message);
+          setRecipeObj(null);
+        }
       } finally {
         setIsLoading(false);
       }
     }
-
-    getOneRecipe();
+    getOneRecipe(String(recipeId));
   }, [recipeId]);
 
   return (
     <RecipePageStyled>
       {error && (
         <p>
-          {t('recipePage.errorText')} {error.message}
+          {t('recipePage.errorText')} {error}
         </p>
       )}
       {isLoading && <Loader />}
@@ -67,7 +72,7 @@ const RecipePage = () => {
             <RecipeIngredientsList
               ingredients={recipeObj.ingredients}
               recipeId={recipeId}
-            />
+            /> 
             <RecipePreparation
               image={recipeObj.thumb}
               instructions={recipeObj.instructions}

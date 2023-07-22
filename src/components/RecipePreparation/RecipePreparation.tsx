@@ -1,3 +1,4 @@
+import {FC} from 'react'
 import { v4 as uuidv4 } from 'uuid';
 import { useTranslation } from 'react-i18next';
 
@@ -10,20 +11,23 @@ import {
   InstrWrapperImg,
 } from './RecipePreparation.styled';
 
-const RecipePreparation = ({ image, instructions }) => {
+interface IProps { image: string; instructions: string; }
+
+
+const RecipePreparation:FC<IProps> = ({ image, instructions }) => {
   const { t } = useTranslation();
   const items = instructions
     .split('\r\n')
     .filter(elem => {
       if (!elem) return false;
-      if (!isNaN(elem)) return false;
+      if (!isNaN(Number(elem))) return false;
       if (elem.toLowerCase().includes('step')) return false;
       return true;
     })
     .map((item, index) => {
       let slicedItem = item;
       for (let i = 0; i < 2; i++) {
-        if (!isNaN(slicedItem[i]) || slicedItem[i] === '.') {
+        if (!isNaN(Number(slicedItem[i])) || slicedItem[i] === '.') {
           slicedItem = slicedItem.slice(i + 1);
         }
       }
