@@ -1,4 +1,5 @@
-import { useDispatch } from 'react-redux';
+import {FC,ChangeEvent} from'react'
+import { useAppDispatch } from '../../hooks/reduxHooks';
 
 import {
   RecipeItem,
@@ -18,9 +19,21 @@ import {
   deleteProduct,
 } from 'redux/ShoppingList/shoppingListOperations';
 
+import { IProduct } from 'types';
+
+
 import NotPhoto from '../../images/bgPages/recipePage/not-photo.png';
 
-const RecipeIngredientsItem = ({
+interface IProps {
+  image: string;
+  nameIngredient: string;
+  descriptionIngredient: string;
+  weight: string;
+  recipeId: string;
+  inShoppingList: boolean;
+  list:IProduct[]}
+
+const RecipeIngredientsItem:FC<IProps> = ({
   image,
   nameIngredient,
   descriptionIngredient,
@@ -29,14 +42,18 @@ const RecipeIngredientsItem = ({
   inShoppingList,
   list,
 }) => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const toggleToShoppingList = () => {
     if (inShoppingList) {
       const ingrid = list.find(item => {
         return item.recipeId === recipeId;
       });
-      dispatch(deleteProduct(ingrid._id));
+     
+      
+           if (ingrid) {
+             dispatch(deleteProduct({ id:ingrid._id } ));
+      }
       return;
     }
     dispatch(
