@@ -31,14 +31,6 @@ const LangSwitcher: FC = () => {
       : i18n.changeLanguage('en');
   };
 
-  console.log('i18n', i18n);
-  if (i18n.language) {
-    console.log('i18n.language', i18n.language);
-  }
-  if (i18n.language) {
-    console.log('i18n.resolvedLanguage', i18n.resolvedLanguage);
-  }
-
   return (
     <Container>
       <Button type="submit" onClick={langToggler}>
