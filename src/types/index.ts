@@ -5,3 +5,4 @@ export * from './recipesTypes';
 export * from './shopingListTypes';
 export * from './theme';
 export * from './themeTypes';
+export * from './searchTypes';
