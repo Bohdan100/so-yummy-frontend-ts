@@ -11,7 +11,7 @@ i18n
     debug: false,
     fallbackLng: 'en',
     backend: {
-      loadPath: '/so-yummy-frontend-ts/public/locales/{{lng}}/{{ns}}.json',
+      loadPath: '/so-yummy-frontend-ts/locales/{{lng}}/{{ns}}.json',
     },
   });
 
