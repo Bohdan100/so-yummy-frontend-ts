@@ -6,7 +6,9 @@ It's an application that will help you to find or compose the necessary recipes
 for cooking. You can create your own recipes, save them, collect the necessary
 ingredients to form a healthy way of eating.
 
-## Team project with TypeScript
+## Team project with TypeScript.
+
+## Team members:
 
 1. Bohdan Orlovskiy - Bohdan100.
 2. Anna Lisitsyna - lisitsyna-anna.
@@ -35,34 +37,34 @@ ingredients to form a healthy way of eating.
 
 ### Pages photo
 
-Welcome Page
+Welcome Page:
 
 ![](./assets/welcomePage.png)
 
-Register Page with form validation
+Register Page with form validation:
 
 ![](./assets/registerPage.png)
 
-Login Page with form validation
+Login Page with form validation:
 
 ![](./assets/signinPageValidation.png)
 
-Main Page - light theme
+Main Page - light theme:
 
 ![](./assets/mainPageLight.png)
 
-Main Page - dark theme
+Main Page - dark theme:
 
 ![](./assets/mainPageDark.png)
 
-Categories Page - dark theme
+Categories Page - dark theme:
 
 ![](./assets/categoriesPage.png)
 
-Add Recipe Page - dark theme
+Add Recipe Page - dark theme:
 
 ![](./assets/addRecipePage.png)
 
-Shopping List Page - light theme
+Shopping List Page - light theme:
 
 ![](./assets/shoppingListPage.png)
