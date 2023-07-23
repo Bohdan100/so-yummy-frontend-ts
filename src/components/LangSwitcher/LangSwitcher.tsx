@@ -26,10 +26,13 @@ const LangSwitcher: FC = () => {
   };
 
   const langToggler = () => {
-    i18n.language === 'en'
+    i18n.resolvedLanguage === 'en'
       ? i18n.changeLanguage('uk')
       : i18n.changeLanguage('en');
   };
+
+  console.log('i18n', i18n);
+  console.log('locales', locales[i18n.language as keyof ILocales].title);
 
   return (
     <Container>
