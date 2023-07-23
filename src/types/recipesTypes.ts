@@ -1,4 +1,4 @@
-import { IRecipe } from './index';
+import { IRecipe } from './ownRecipesTypes';
 
 interface IResponse {
   status: string;
