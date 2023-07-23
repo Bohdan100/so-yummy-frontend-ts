@@ -1,26 +1,27 @@
-import { lazy, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { FC, useEffect, lazy } from 'react';
 import { Route, Routes } from 'react-router-dom';
+
+import { useAppDispatch, useAppSelector } from 'hooks/reduxHooks';
+import { refresh } from 'redux/Auth/authOperations';
+import { selectIsRefreshing, selectToken } from 'redux/Auth/authSelectors';
+import { fetchProducts } from 'redux/ShoppingList/shoppingListOperations';
+
+import { GlobalStyle } from './GlobalStyle';
 import { ThemeProvider } from 'styled-components';
 import { theme as lightMode, darkTheme as darkMode } from '../constants';
+import { selectTheme } from 'redux/Theme/themeSelectors';
+
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import '../i18n';
 
-import { GlobalStyle } from './GlobalStyle';
+import PublicRoute from './Routes/PublicRoute';
+import PrivateRoute from './Routes/PrivateRoute';
 
-import { refresh } from 'redux/Auth/authOperations';
-import { selectTheme } from 'redux/Theme/themeSelectors';
-import { selectIsRefreshing, selectToken } from 'redux/Auth/authSelectors';
-import { fetchProducts } from 'redux/ShoppingList/shoppingListOperations';
-
-import Loader from 'components/Loader/Loader';
-
+import Loader from 'components/Loader';
 import Layout from 'components/Layout';
 import SharedLayout from 'components/SharedLayout';
 import GoogleRedirect from 'components/GoogleRedirect';
-import PublicRoute from './Routes/PublicRoute';
-import PrivateRoute from './Routes/PrivateRoute';
 import CategoriesByName from './CategoriesByName';
 
 const WelcomePage = lazy(() => import('pages/WelcomePage'));
@@ -36,22 +37,20 @@ const SearchPage = lazy(() => import('pages/SearchPage'));
 const NotFoundPage = lazy(() => import('pages/NotFoundPage'));
 const RecipePage = lazy(() => import('pages/RecipePage'));
 
-export const App = () => {
-  const dispatch = useDispatch();
-  const theme = useSelector(selectTheme);
-  const isRefreshUser = useSelector(selectIsRefreshing);
+export const App: FC = () => {
+  const dispatch = useAppDispatch();
+  const theme = useAppSelector(selectTheme);
+  const isRefreshUser = useAppSelector(selectIsRefreshing);
   const userThemeMode = theme === 'light' ? lightMode : darkMode;
-  const token = useSelector(selectToken);
+  const token = useAppSelector(selectToken);
 
   useEffect(() => {
     if (!token) {
       return;
     }
 
-    dispatch(refresh()).then(res => {
-      if (!res.error) {
-        dispatch(fetchProducts());
-      }
+    dispatch(refresh()).then(() => {
+      dispatch(fetchProducts());
     });
   }, [dispatch, token]);
 
