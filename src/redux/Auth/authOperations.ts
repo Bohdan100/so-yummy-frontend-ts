@@ -1,4 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { AxiosError } from 'axios';
 
 import {
   createUser,
@@ -29,8 +30,8 @@ export const register = createAsyncThunk<
       setAuthHeader(res.data.token);
       return res;
     } catch (error) {
-      if (error instanceof Error) {
-        return thunkAPI.rejectWithValue(error.message);
+      if (error instanceof AxiosError) {
+        return thunkAPI.rejectWithValue(String(error.response?.status || 500));
       } else {
         const errorMessage =
           (error as { response?: { data?: { message?: string } } })?.response
@@ -53,8 +54,8 @@ export const login = createAsyncThunk<
       setAuthHeader(res.data.token);
       return res;
     } catch (error) {
-      if (error instanceof Error) {
-        return thunkAPI.rejectWithValue(error.message);
+      if (error instanceof AxiosError) {
+        return thunkAPI.rejectWithValue(String(error.response?.status || 500));
       } else {
         const errorMessage =
           (error as { response?: { data?: { message?: string } } })?.response
@@ -137,11 +138,11 @@ export const refresh = createAsyncThunk<
 
 export const updateUser = createAsyncThunk<
   UpdateUserResponse,
-  Pick<IUser, 'name' | 'avatar'>,
+  { name: string; avatar: File | string },
   AsyncThunkConfig
 >(
   '/auth/update',
-  async (credentials: Pick<IUser, 'name' | 'avatar'>, thunkAPI) => {
+  async (credentials: { name: string; avatar: File | string }, thunkAPI) => {
     try {
       const data = await updateUserInfo(credentials);
       return data;
