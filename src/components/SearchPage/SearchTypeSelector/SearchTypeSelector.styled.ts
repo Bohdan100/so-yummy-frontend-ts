@@ -27,11 +27,10 @@ export const SelectCon = styled.div`
 
 export const SelectStyled = styled(Select)`
   & .react-select__control {
-    background-color: ${p => p.theme.colors.searchSelectBg};
     border: ${p => p.theme.borders.searchInput};
     outline: none;
     box-shadow: none;
-    border-radius: ${p => p.theme.radii.searchSelectBg};
+
     width: 146px;
     height: 34px;
     font-size: 12px;

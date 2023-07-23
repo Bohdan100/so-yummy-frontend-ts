@@ -1,10 +1,23 @@
-import { useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { SelectCon, SelectStyled } from './SearchTypeSelector.styled';
 
-const SearchTypeSelector = ({ startType, typeSubmit }) => {
+interface ISelect {
+  value: string;
+  label: string;
+}
+
+interface ISearchTypeSelectorProps {
+  startType: string;
+  typeSubmit: (inputType: ISelect) => void;
+}
+
+const SearchTypeSelector: FC<ISearchTypeSelectorProps> = ({
+  startType,
+  typeSubmit,
+}) => {
   const { t } = useTranslation();
-  const [selectedOption, setSelectedOption] = useState({
+  const [selectedOption, setSelectedOption] = useState<ISelect>({
     value: startType,
     label: startType,
   });
@@ -22,6 +35,9 @@ const SearchTypeSelector = ({ startType, typeSubmit }) => {
     setSelectedOption({ value: startType, label: startType });
   }, [startType]);
 
+  const handleChange = (newValue: ISelect) => {
+    setSelectedOption(newValue);
+  };
   return (
     <SelectCon>
       <span>{t('searchTypeSelector.selector')}</span>
@@ -30,7 +46,7 @@ const SearchTypeSelector = ({ startType, typeSubmit }) => {
           value: startType,
           label: startType.charAt(0).toUpperCase() + startType.slice(1),
         }}
-        onChange={setSelectedOption}
+        onChange={e => handleChange(e as ISelect)}
         options={options}
         value={selectedOption}
         isSearchable={false}

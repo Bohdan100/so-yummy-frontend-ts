@@ -6,7 +6,7 @@ import * as API from 'services/categories-API';
 import Loader from 'components/Loader';
 import NotFoundWrapp from 'components/ReusableComponents/NotFoundWrapp';
 import RecipeCard from 'components/ReusableComponents/RecipeCard/RecipeCard';
-import { IOneRecipe, IRecipesByFourCategories } from 'types/recipesTypes';
+import { IRecipe, IRecipesByFourCategories } from 'types';
 import {
   CategoryList,
   SeeAllBtn,
@@ -36,10 +36,8 @@ const PreviewCategories: FC = () => {
     async function getRecipesByFourCategory() {
       try {
         setIsLoading(true);
-        const {
-          data: { recipes },
-        } = await API.fetchRecipesByFourCategory(count);
-        setRecipesByMainCategories(recipes);
+        const { data } = await API.fetchRecipesByFourCategory(count);
+        setRecipesByMainCategories(data);
       } catch (error) {
         if (error instanceof Error) {
           setError(error.message);
@@ -70,7 +68,7 @@ const PreviewCategories: FC = () => {
                     {category.charAt(0).toUpperCase() + category.slice(1)}
                   </Title>
                   <CardList>
-                    {recipes.map((recipe: IOneRecipe) => (
+                    {recipes.map((recipe: IRecipe) => (
                       <RecipeCard dish={recipe} key={recipe._id} />
                     ))}
                   </CardList>

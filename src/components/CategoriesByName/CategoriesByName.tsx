@@ -2,7 +2,7 @@ import { FC, useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import { toast } from 'react-toastify';
 import * as API from 'services/categories-API';
-import { IAllRecipes } from 'types/recipesTypes';
+import { IRecipe } from 'types';
 import Loader from 'components/Loader';
 import RecipeCard from 'components/ReusableComponents/RecipeCard/RecipeCard';
 import NotFoundWrapp from 'components/ReusableComponents/NotFoundWrapp';
@@ -10,7 +10,7 @@ import { RecipesList } from './CategoriesByName.styled';
 
 const CategoriesByName: FC = () => {
   const { categoryName: category } = useParams<string>();
-  const [recipes, setRecipes] = useState<IAllRecipes>([]);
+  const [recipes, setRecipes] = useState<IRecipe[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -18,12 +18,8 @@ const CategoriesByName: FC = () => {
     async function getRecipesByCategory() {
       try {
         setIsLoading(true);
-        const {
-          data: {
-            data: { result },
-          },
-        } = await API.fetchRecipesByCategory(category);
-        setRecipes(result);
+        const { data } = await API.fetchRecipesByCategory(category);
+        setRecipes(data);
       } catch (error) {
         if (error instanceof Error) {
           setError(error.message);
