@@ -12,7 +12,7 @@ import { scrollToTop } from 'helpers/scrollToTop';
 
 import { HeaderTable, RecipePageStyled } from './RecipePage.styled';
 
-import * as API from '../../services/favorite1-API';
+import * as API from 'services/favorite-API';
 
 import { IRecipeById } from 'types';
 

@@ -2,9 +2,9 @@ import { FC, useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
 
-import * as API from '../../services/favorite1-API';
+import * as API from 'services/favorite-API';
 import RecipePageBtn from '../RecipePageBtn';
-import { useAuth } from '../../hooks/useAuth';
+import { useAuth } from 'hooks/useAuth';
 
 import {
   RecipeHeroConteiner,
@@ -30,19 +30,15 @@ const RecipePageHero:FC<IProps> = ({ recipeObj, recipeId }) => {
   const userId = useAuth().user.userId;
   const isOwn = owner !== undefined && owner === userId;
 
-  
-
-  
-
   useEffect(() => {
-    async function getIsFavorites(recipeId:string) {
+    async function getIsFavorites() {
       try {
-        const { data } = await API.isFavorite(recipeId);
+        const { data } = await API.isFavorite(String(recipeId));
         setIsFavorite(data.result);
       } catch (error) {}
     }
 
-    getIsFavorites(String(recipeId));
+    getIsFavorites();
   }, [recipeId]);
 
 
