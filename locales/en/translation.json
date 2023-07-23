@@ -1,0 +1,201 @@
+{
+  "welcomePage": {
+    "title": "Welcome to the app!",
+    "description": "This app offers more than just a collection of recipes - it is designed to be your very own digital cookbook. You can easily save and retrieve your own recipes at any time."
+  },
+  "button": {
+    "register": "Registration",
+    "login": "Sign in"
+  },
+  "auth": {
+    "title": {
+      "register": "Registration",
+      "login": "Sign in"
+    },
+    "form": {
+      "name": "Name",
+      "email": "Email",
+      "password": "Password",
+      "button": {
+        "register": "Sign up",
+        "login": "Sign in"
+      },
+      "link": {
+        "register": "Registration",
+        "login": "Sign In"
+      }
+    },
+    "status": {
+      "secure": "Password is secure",
+      "notSecure": ""
+    },
+    "error": {
+      "400": "BAD REQUEST",
+      "401": "Wrong email or password. Try again!",
+      "404": "NOT FOUND",
+      "409": "A user with this email address or name is already registered. Please log in or enter a different email address",
+      "500": "A connection error occurred. Please contact the support service",
+      "name": "The name must contain only letters, spaces and dashes",
+      "email": "Is not valid email. The email must be for example: email@example.com",
+      "password": "Your password is weak. The password must contain at least one uppercase letter, one lowercase letter and one number",
+      "required": "Required",
+      "short": "Too Short! Min {{value}} symbols!",
+      "long": "Too Long! Max {{value}} symbols!"
+    }
+  },
+  "header": {
+    "categories": "Categories",
+    "addRecipes": "Add recipes",
+    "myRrecipes": "My recipes",
+    "favorites": "Favorites",
+    "shoppingList": "Shopping list",
+    "search": "Search"
+  },
+  "logout": {
+    "confirm": "Are you sure you want to log out?",
+    "acceptBtn": "Log out",
+    "cancel": "Cancel",
+    "success": "You have successfully logged out",
+    "error": "Something went wrong...Try reloading the page",
+    "edit": "Edit profile",
+    "logoutBtn": "Log out"
+  },
+  "editUser": {
+    "saveBtn": "Save changes",
+    "success": "You have successfully updated your details",
+    "error": "Something went wrong...Try reloading the page"
+  },
+  "footer": {
+    "rights": "© 2023 All Rights Reserved",
+    "terms": "Terms of Service",
+    "info1": "Database of recipes that can be replenished",
+    "info2": "Flexible search for desired and unwanted ingredients",
+    "info3": "Ability to add your own recipes with photos",
+    "info4": "Convenient and easy to use",
+    "nav": {
+      "ingredients": "Ingredients",
+      "addRecipes": "Add recipes",
+      "myRrecipes": "My recipes",
+      "favorites": "Favorites",
+      "shoppingList": "Shopping list"
+    }
+  },
+  "subscribe": {
+    "success": "You have successfully subscribed",
+    "error409": "This user have alredy subscribed",
+    "error": "Something went wrong. Try again...",
+    "title": "Subscribe to our Newsletter",
+    "description": "Subscribe up to our newsletter. Be in touch with latest news and special offers, etc.",
+    "placeholder": "Enter your email address",
+    "btn": "Subcribe"
+  },
+  "mainHero": {
+    "error": "You didn't enter anything to search",
+    "description": "'What to cook?' is not only a recipe app, it is, in fact, your cookbook. You can add your own recipes to save them for the future.",
+    "chooseSpan": "Delicious and healthy",
+    "chooseText": "way to enjoy a variety of fresh ingredients in one satisfying meal",
+    "see": "See recipes"
+  },
+  "searchForm": {
+    "btnText": "Search",
+    "btnPlaceholder": "Enter search value"
+  },
+  "PreviewCategories": {
+    "error": "Something went wrong. Plese try again...",
+    "errorText": "Whoops, something went wrong:",
+    "seeAllBtnText": "See all",
+    "otherBtnText": "Other categories"
+  },
+  "categoriesPage": {
+    "title": "Categories"
+  },
+  "categoriesList": {
+    "error": "Something went wrong. Plese try again...",
+    "errorText": "Whoops, something went wrong..."
+  },
+  "recipePage": {
+    "errorText": "Whoops, something went wrong:",
+    "ingridients": "Ingridients",
+    "number": "Number",
+    "addToList": "Add to list"
+  },
+  "recipePreparation": {
+    "title": "Recipe Preparation"
+  },
+  "recipePageHero": {
+    "error": "Something went wrong. Plese try again...",
+    "addTextBtn": "Add to favorite recipes",
+    "removeTextBtn": "Remove from favorite recipes",
+    "time": " min"
+  },
+  "addRecipePage": {
+    "title": "Add recipe",
+    "text": "Follow us"
+  },
+  "addRecipeForm": {
+    "errorFirst": "Not all fields were validated, follow the prompts!!",
+    "errorSecond": "Something went wrong, try add your recipe again",
+    "submitBtn": "Add"
+  },
+  "recipeFormDescriptionFields": {
+    "placeholderFirst": "Enter item title",
+    "placeholderSecond": "Enter about recipe",
+    "placeholderThird": "Category",
+    "placeholderForth": "Cooking time"
+  },
+  "recipeFormIngredientsFields": {
+    "title": "Ingredients",
+    "textNotify": "Add the right ingredients to your recipe"
+  },
+  "ingridientField": {
+    "placeholder": "Start enter ingredient"
+  },
+  "recipeFormPreparationFields": {
+    "title": "Recipe Preparation",
+    "placeholder": "Enter recipe"
+  },
+  "popularRecipe": {
+    "title": "Popular recipes",
+    "error": "Something went wrong...Try reloading the page",
+    "message": "No popular recipes"
+  },
+  "myRecipesPage": {
+    "title": "My Recipes",
+    "emptyList": "You currently don't have any own recipes added. Let's add some♥"
+  },
+  "myRecipeItem": {
+    "success": "Recipe deleted",
+    "time": "min",
+    "btn": "See recipe"
+  },
+  "favoritePage": {
+    "title": "Favorites",
+    "error": "Something went wrong...Try reloading the page",
+    "notFavorites": "You currently don't have any favorite recipes added. Let's add some♥"
+  },
+  "favoriteCard": {
+    "time": "min",
+    "btn": "See recipe"
+  },
+  "shoppingListPage": {
+    "title": "Shopping list",
+    "products": "Products",
+    "number": "Number",
+    "remove": "Remove",
+    "notFoundText": "Your shopping list is currently empty"
+  },
+  "searchPage": {
+    "title": "Search",
+    "errorFirst": "Sorry, there are no recipes matching your search query. Please, try again.",
+    "errorSecond": "Something went wrong. Please, reload the page.",
+    "notFoundText": "Whoops, something went wrong:",
+    "notFoundTextSecond": "Try looking for something else..."
+  },
+  "searchTypeSelector": {
+    "selector": "Search by:"
+  },
+  "notFoundPage": {
+    "textMain": "We are sorry,",
+    "textAddition": "but the page you were looking for can’t be found.."
+  }
+}

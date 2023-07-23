@@ -32,14 +32,21 @@ const LangSwitcher: FC = () => {
   };
 
   console.log('i18n', i18n);
-  console.log('locales', locales[i18n.language as keyof ILocales].title);
+  if (i18n.language) {
+    console.log('i18n.language', i18n.language);
+  }
+  if (i18n.language) {
+    console.log('i18n.resolvedLanguage', i18n.resolvedLanguage);
+  }
 
   return (
     <Container>
       <Button type="submit" onClick={langToggler}>
         <Box>
-          <Flag>{flags[i18n.language as keyof IFlags]}</Flag>
-          <Title>{locales[i18n.language as keyof ILocales].title}</Title>
+          <Flag>{flags[i18n.resolvedLanguage as keyof IFlags]}</Flag>
+          <Title>
+            {locales[i18n.resolvedLanguage as keyof ILocales].title}
+          </Title>
         </Box>
       </Button>
     </Container>
