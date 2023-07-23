@@ -54,3 +54,28 @@ export interface IAddRecipeTоFavorites extends IResponse {
 }
 
 export interface IRemoveRecipeFromFavorites extends IResponse {}
+
+export interface IRecipeFromFavoriteRecipes {
+  _id: string;
+  recipe: {
+    _id: string;
+    title: string;
+    category: string;
+    description: string;
+    thumb: string;
+    preview: string;
+    time: string;
+  };
+  userId: string;
+}
+
+export interface IDataFromFavoriteRecipes {
+  result: IRecipeFromFavoriteRecipes[];
+}
+
+export interface IFavoriteRecipesGetResponse extends IResponse {
+  data: IDataFromFavoriteRecipes;
+  total: number;
+  page: string;
+  limit: string;
+}

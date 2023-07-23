@@ -1,7 +1,18 @@
+import  React, { FC } from 'react';
 import FavoriteCard from '../FavoriteCard';
 import { FavList } from './FavoriteList.styled';
 
-const FavoriteList = ({ recipes, handleDelete }) => {
+import { IRecipeFromFavoriteRecipes} from 'types';
+
+interface IProps{
+  recipes: IRecipeFromFavoriteRecipes[];
+  handleDelete: (id:string)=>Promise<void> ;
+
+}
+
+const FavoriteList:FC<IProps> = ({ recipes,
+  handleDelete
+}) => {
   return (
     <FavList>
       {recipes.map(recipe => (

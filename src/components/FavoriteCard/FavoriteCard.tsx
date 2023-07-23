@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
@@ -20,7 +20,23 @@ import {
   RecipePageBtn,
 } from './FavoriteCard.styled';
 
-const FavoriteCard = ({ id, title, preview, description, time, onDelete }) => {
+interface IProps {
+  id: string;
+  title: string;
+  preview: string;
+  description: string;
+  time: string;
+  onDelete: React.MouseEventHandler<HTMLButtonElement>;
+}
+
+const FavoriteCard: FC<IProps> = ({
+  id,
+  title,
+  preview,
+  description,
+  time,
+  onDelete,
+}) => {
   const theme = useSelector(selectTheme);
   const { t } = useTranslation();
 
@@ -34,7 +50,9 @@ const FavoriteCard = ({ id, title, preview, description, time, onDelete }) => {
           <div>
             <Title>{title}</Title>
           </div>
-          <DeleteButton onClick={onDelete}>
+          <DeleteButton
+            onClick={onDelete}
+          >
             <DeleteIconStyled
               stroke={theme === 'light' ? '#22252A' : '#FAFAFA'}
             />

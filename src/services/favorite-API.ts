@@ -5,6 +5,7 @@ import {
   IIsFavoriteResponse,
   IRemoveRecipeFromFavorites,
   IAddRecipeTоFavorites,
+  IFavoriteRecipesGetResponse,
 } from 'types';
 
 export const fetchOneRacipes = async (id: string) => {
@@ -19,11 +20,13 @@ export const fetchOneRacipes = async (id: string) => {
 //   return data;
 // };
 
-// export const fetchFavoriteRacipes = async (page, limit) => {
-//   const url = `/favorite`;
-//   const { data } = await axios.get(`${url}?page=${page}&limit=${limit}`);
-//   return data;
-// };
+export const fetchFavoriteRacipes = async (page?: number, limit?: number) => {
+  const url = `/favorite`;
+  const { data }: AxiosResponse<IFavoriteRecipesGetResponse> = await axios.get(
+    `${url}?page=${page}&limit=${limit}`
+  );
+  return data;
+};
 
 export const addRecipeTоFavorites = async (id: string) => {
   const url = `/favorite/${id}`;

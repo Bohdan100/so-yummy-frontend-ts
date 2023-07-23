@@ -1,5 +1,5 @@
-import {FC,ChangeEvent} from'react'
-import { useAppDispatch } from '../../hooks/reduxHooks';
+import {FC} from'react'
+import { useAppDispatch } from 'hooks/reduxHooks';
 
 import {
   RecipeItem,
@@ -22,7 +22,7 @@ import {
 import { IProduct } from 'types';
 
 
-import NotPhoto from '../../images/bgPages/recipePage/not-photo.png';
+import NotPhoto from 'images/bgPages/recipePage/not-photo.png';
 
 interface IProps {
   image: string;
