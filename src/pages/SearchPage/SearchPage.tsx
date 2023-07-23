@@ -32,13 +32,13 @@ const SearchPage: FC = () => {
   const perPageItems = (): string => {
     let perPage;
     if (isDesktop) {
-      perPage = 12;
+      perPage = '12';
     } else if (isTablet) {
-      perPage = 6;
+      perPage = '6';
     } else {
-      perPage = 6;
+      perPage = '6';
     }
-    return perPage.toString();
+    return perPage;
   };
 
   const onSubmit = (query: string, type: string) => {
