@@ -20,8 +20,6 @@ import {
 } from 'redux/ShoppingList/shoppingListOperations';
 
 import { IProduct } from 'types';
-
-
 import NotPhoto from 'images/bgPages/recipePage/not-photo.png';
 
 interface IProps {
@@ -31,9 +29,10 @@ interface IProps {
   weight: string;
   recipeId: string;
   inShoppingList: boolean;
-  list:IProduct[]}
+  list: IProduct[];
+}
 
-const RecipeIngredientsItem:FC<IProps> = ({
+const RecipeIngredientsItem: FC<IProps> = ({
   image,
   nameIngredient,
   descriptionIngredient,
@@ -49,10 +48,9 @@ const RecipeIngredientsItem:FC<IProps> = ({
       const ingrid = list.find(item => {
         return item.recipeId === recipeId;
       });
-     
-      
-           if (ingrid) {
-             dispatch(deleteProduct({ id:ingrid._id } ));
+
+      if (ingrid) {
+        dispatch(deleteProduct({ id: ingrid._id }));
       }
       return;
     }

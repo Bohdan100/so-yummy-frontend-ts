@@ -15,11 +15,11 @@ import {
   TextDescription,
 } from './PopularRecipe.styled';
 
-import { IOneRecipe } from 'types';
+import { IRecipe } from 'types';
 
 const PopularRecipe: FC = () => {
   const [popularRecipes, setPopularRecipes] = useState<
-    Pick<IOneRecipe, '_id' | 'title' | 'description' | 'preview' | 'thumb'>[]
+    Pick<IRecipe, '_id' | 'title' | 'description' | 'preview' | 'thumb'>[]
   >([]);
   const { t } = useTranslation();
 
@@ -33,7 +33,7 @@ const PopularRecipe: FC = () => {
       .then(data => {
         if (!data) return;
         const normalizePopularRecipe: Pick<
-          IOneRecipe,
+          IRecipe,
           '_id' | 'title' | 'description' | 'preview' | 'thumb'
         >[] = data.map(el => el.recipe);
         setPopularRecipes(normalizePopularRecipe);

@@ -23,13 +23,13 @@ const CategoriesList: FC = () => {
     async function getAllCategories() {
       try {
         setIsLoading(true);
-        const { categoriesList } = await API.fetchAllCategories();
+        const { data } = await API.fetchAllCategories();
 
-        setCategories(categoriesList);
+        setCategories(data);
         if (category) {
           const categoryCapitalize =
             category[0].toUpperCase() + category.slice(1);
-          const indexOfCategory = categoriesList.indexOf(categoryCapitalize);
+          const indexOfCategory = data.indexOf(categoryCapitalize);
           if (indexOfCategory > 0) setTabValue(indexOfCategory);
         }
       } catch (error) {
