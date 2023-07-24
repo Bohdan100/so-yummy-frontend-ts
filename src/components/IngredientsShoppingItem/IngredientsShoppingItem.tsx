@@ -1,4 +1,5 @@
-import { useDispatch } from 'react-redux';
+import {FC} from 'react'
+import { useAppDispatch } from 'hooks/reduxHooks';
 
 import {
   IngredientItem,
@@ -13,8 +14,15 @@ import {
 import { deleteProduct } from 'redux/ShoppingList/shoppingListOperations';
 import NotPhoto from '../../images/bgPages/recipePage/not-photo.png';
 
-const IngredientsShoppingItem = ({ image, id, nameIngredient, weight }) => {
-  const dispatch = useDispatch();
+interface IProps{
+  image: string;
+  id: string;
+  nameIngredient: string;
+  weight: string;
+}
+
+const IngredientsShoppingItem:FC<IProps> = ({ image, id, nameIngredient, weight }) => {
+  const dispatch = useAppDispatch();
 
   return (
     <IngredientItem>
@@ -29,7 +37,7 @@ const IngredientsShoppingItem = ({ image, id, nameIngredient, weight }) => {
         <NameIngredient>{nameIngredient}</NameIngredient>
       </TextContainer>
       <WeighIngredient>{weight}</WeighIngredient>
-      <DeleteButton type="buton" onClick={() => dispatch(deleteProduct(id))}>
+      <DeleteButton type="button" onClick={() => dispatch(deleteProduct({id}))}>
         <DelIconStyled />
       </DeleteButton>
     </IngredientItem>

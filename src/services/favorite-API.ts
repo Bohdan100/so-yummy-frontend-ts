@@ -14,12 +14,6 @@ export const fetchOneRacipes = async (id: string) => {
   return data;
 };
 
-// export const fetchOwnRacipes = async () => {
-//   const url = `/ownRecipe/`;
-//   const { data } = await axios.get(url);
-//   return data;
-// };
-
 export const fetchFavoriteRacipes = async (page?: number, limit?: number) => {
   const url = `/favorite`;
   const { data }: AxiosResponse<IFavoriteRecipesGetResponse> = await axios.get(

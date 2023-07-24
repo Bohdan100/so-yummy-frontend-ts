@@ -11,14 +11,23 @@ import { HeaderTable, StyledLoaderWrapper } from './ShoppingListPage.styled';
 import Loader from 'components/Loader';
 import NotFoundWrapp from 'components/ReusableComponents/NotFoundWrapp';
 
+import {useShoppingList} from 'hooks/useShoppingList'
+import { IProduct } from 'types';
+
 const isLoading = false;
 
 const ShoppingListPage = () => {
   const { t } = useTranslation();
-  const shoppingList = useSelector(selectProducts);
 
-  const revers = arr => arr.map((_, index) => arr[arr.length - 1 - index]);
-  const reversedShoppingList = revers(shoppingList);
+ 
+  
+  const shoppingList = useShoppingList().products;
+  console.log(shoppingList);
+  
+
+  const reverse = (arr: IProduct[]): IProduct[] => arr.map((_, index) => arr[arr.length - 1 - index]);
+  
+  const reversedShoppingList = reverse(shoppingList);
 
   return (
     <MainContainer>
@@ -30,7 +39,7 @@ const ShoppingListPage = () => {
           <span>{t('shoppingListPage.remove')}</span>
         </p>
       </HeaderTable>
-      {isLoading ? (
+      {isLoading ? ( 
         <StyledLoaderWrapper>
           <Loader />
         </StyledLoaderWrapper>
