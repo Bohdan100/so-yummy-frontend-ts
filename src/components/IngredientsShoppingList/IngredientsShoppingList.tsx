@@ -1,7 +1,15 @@
+import { FC } from 'react';
+
 import IngredientsShoppingItem from 'components/IngredientsShoppingItem';
 import { IngredientsListStyled } from './IngredientsShoppingList.styled';
 
-const IngredientsShoppingList = ({ ingredients }) => {
+import { IProduct } from 'types';
+
+interface IProps {
+  ingredients: IProduct[];
+}
+
+const IngredientsShoppingList: FC<IProps> = ({ ingredients }) => {
   return (
     <>
       <IngredientsListStyled>
@@ -11,7 +19,6 @@ const IngredientsShoppingList = ({ ingredients }) => {
             image={ingredient.image}
             nameIngredient={ingredient.strIngredient}
             weight={ingredient.weight ? ingredient.weight : 'any'}
-            recipeId={ingredient.recipeId}
             id={ingredient._id}
           />
         ))}
